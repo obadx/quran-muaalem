@@ -303,6 +303,7 @@ def build_or_load_trt(
     max_seconds: float = 6.0,
     force_rebuild: bool = False,
     max_batch_size: int = 4,
+    use_trt: bool = True,
 ) -> EngineResources:
     device = torch.device(device)
     dtype = dtype or (torch.float16 if device.type == "cuda" else torch.float32)
@@ -318,7 +319,7 @@ def build_or_load_trt(
     model.eval()
     levels = list(model.level_to_lm_head.keys())
 
-    if trt_path.exists() and not force_rebuild:
+    if trt_path.exists() and not force_rebuild and use_trt:
         LOGGER.info("Loading existing TensorRT engine from %s", trt_path)
         trt_module = torch.jit.load(trt_path, map_location=device)
         _attach_levels(trt_module, getattr(trt_module, "levels", levels))
@@ -333,9 +334,9 @@ def build_or_load_trt(
             trt_path=trt_path,
         )
 
-    if torch_tensorrt is None:
+    if torch_tensorrt is None or not use_trt:
         LOGGER.warning(
-            "torch_tensorrt is not installed; falling back to plain TorchScript."
+            "TensorRT disabled or unavailable; falling back to plain TorchScript."
         )
         wrapper = _WrappedModel(model)
         return EngineResources(

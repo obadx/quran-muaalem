@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 from pathlib import Path
 from time import perf_counter
 from typing import List, Optional
@@ -28,13 +29,16 @@ DEFAULT_DTYPE = torch.float16 if DEVICE == "cuda" else torch.float32
 ENGINE_PATH = Path("engine/muaalem_trt.ts")
 TARGET_SR = DEFAULT_SAMPLING_RATE
 
-LOGGER.info("Loading TRT resources on device=%s...", DEVICE)
+USE_TRT = os.getenv("MUALEM_DISABLE_TRT", "0").lower() not in {"1", "true", "yes"}
+
+LOGGER.info("Loading TRT resources on device=%s (use_trt=%s)...", DEVICE, USE_TRT)
 RESOURCES: EngineResources = build_or_load_trt(
     model_id=DEFAULT_MODEL_ID,
     device=DEVICE,
     dtype=DEFAULT_DTYPE,
     trt_path=ENGINE_PATH,
     sampling_rate=DEFAULT_SAMPLING_RATE,
+    use_trt=USE_TRT,
 )
 LOGGER.info(
     "Model ready (TensorRT=%s, engine=%s)",
