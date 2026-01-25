@@ -21,3 +21,6 @@
 # inference engine
 build
 *.ts
+
+# models
+*.pt

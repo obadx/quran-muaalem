@@ -1,0 +1,36 @@
+▶ 3s_batch1_req512
+✔ Summary: {'tag': '3s_batch1_req512', 'audio_duration_s': 3, 'batch_size': 1, 'requests': 512, 'total_time_s': 29.540471076965332, 'throughput_rps': 17.33215420519277, 'avg_ms': 56.03786338281296, 'p50_ms': 37.35714550000324, 'p95_ms': 37.78124350000667, 'min_ms': 36.672746000007805, 'max_ms': 9507.954471000005}
+
+▶ 3s_batch4_req512
+✔ Summary: {'tag': '3s_batch4_req512', 'audio_duration_s': 3, 'batch_size': 4, 'requests': 512, 'total_time_s': 65.52130889892578, 'throughput_rps': 7.814251708399468, 'avg_ms': 124.71113443749937, 'p50_ms': 119.18507850000992, 'p95_ms': 125.47364675001091, 'min_ms': 113.79111299999067, 'max_ms': 1853.691525000002}
+
+▶ 3s_batch8_req512
+✔ Summary: {'tag': '3s_batch8_req512', 'audio_duration_s': 3, 'batch_size': 8, 'requests': 512, 'total_time_s': 120.93562650680542, 'throughput_rps': 4.233657316615366, 'avg_ms': 229.67532339453152, 'p50_ms': 224.0610045000011, 'p95_ms': 228.69477394998938, 'min_ms': 219.40284900000506, 'max_ms': 2544.794533999976}
+
+▶ 3s_batch16_req512
+✔ Summary: {'tag': '3s_batch16_req512', 'audio_duration_s': 3, 'batch_size': 16, 'requests': 512, 'total_time_s': 249.19659161567688, 'throughput_rps': 2.054602740271951, 'avg_ms': 473.60908387890663, 'p50_ms': 438.7185815000123, 'p95_ms': 646.7648796499758, 'min_ms': 430.742113000008, 'max_ms': 1491.2837140000192}
+
+▶ 5s_batch1_req512
+✔ Summary: {'tag': '5s_batch1_req512', 'audio_duration_s': 5, 'batch_size': 1, 'requests': 512, 'total_time_s': 36.43028116226196, 'throughput_rps': 14.05424234085735, 'avg_ms': 68.53472945313044, 'p50_ms': 61.94899249999253, 'p95_ms': 74.63570835000155, 'min_ms': 58.71217699996123, 'max_ms': 1754.1918429999441}
+
+▶ 5s_batch4_req512
+✔ Summary: {'tag': '5s_batch4_req512', 'audio_duration_s': 5, 'batch_size': 4, 'requests': 512, 'total_time_s': 107.97280764579773, 'throughput_rps': 4.741934670066226, 'avg_ms': 205.1697909843777, 'p50_ms': 199.06366750001325, 'p95_ms': 247.09182720004605, 'min_ms': 189.89602000010564, 'max_ms': 396.787259000007}
+
+▶ 5s_batch8_req512
+✔ Summary: {'tag': '5s_batch8_req512', 'audio_duration_s': 5, 'batch_size': 8, 'requests': 512, 'total_time_s': 201.00218391418457, 'throughput_rps': 2.5472360052495358, 'avg_ms': 381.5180047304681, 'p50_ms': 376.39782050001713, 'p95_ms': 404.96062025000015, 'min_ms': 368.9172829999734, 'max_ms': 573.3772969999791}
+
+▶ 5s_batch16_req512
+✔ Summary: {'tag': '5s_batch16_req512', 'audio_duration_s': 5, 'batch_size': 16, 'requests': 512, 'total_time_s': 419.9541018009186, 'throughput_rps': 1.2191808528702412, 'avg_ms': 797.9441733691428, 'p50_ms': 721.1052064999421, 'p95_ms': 991.6366920999849, 'min_ms': 709.352446000139, 'max_ms': 1254.067866000014}
+
+▶ 15s_batch1_req512
+✔ Summary: {'tag': '15s_batch1_req512', 'audio_duration_s': 15, 'batch_size': 1, 'requests': 512, 'total_time_s': 120.15450263023376, 'throughput_rps': 4.2611803036265785, 'avg_ms': 230.0888479375054, 'p50_ms': 228.46524349995434, 'p95_ms': 240.89892124992502, 'min_ms': 186.3428080000631, 'max_ms': 973.1673470000715}
+
+▶ 15s_batch4_req512
+✔ Summary: {'tag': '15s_batch4_req512', 'audio_duration_s': 15, 'batch_size': 4, 'requests': 512, 'total_time_s': 422.241459608078, 'throughput_rps': 1.2125763312660849, 'avg_ms': 807.1391756777273, 'p50_ms': 821.7849024998714, 'p95_ms': 871.0435323999491, 'min_ms': 655.1490540000486, 'max_ms': 1029.1137930000787}
+
+▶ 15s_batch8_req512
+✔ Summary: {'tag': '15s_batch8_req512', 'audio_duration_s': 15, 'batch_size': 8, 'requests': 512, 'total_time_s': 795.5160727500916, 'throughput_rps': 0.6436073607287667, 'avg_ms': 1519.639474417978, 'p50_ms': 1599.3229305001933, 'p95_ms': 1701.960056149892, 'min_ms': 1268.3501029996478, 'max_ms': 1854.9361989998943}
+
+▶ 15s_batch16_req512
+✔ Summary: {'tag': '15s_batch16_req512', 'audio_duration_s': 15, 'batch_size': 16, 'requests': 512, 'total_time_s': 1563.4244158267975, 'throughput_rps': 0.327486250577221, 'avg_ms': 2987.0450752695374, 'p50_ms': 3220.311466999874, 'p95_ms': 3434.6867539500636, 'min_ms': 2502.03839400001, 'max_ms': 3712.8651990001345}
+
