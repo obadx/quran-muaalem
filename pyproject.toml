@@ -15,11 +15,21 @@ authors = [
 description = "Quran Phonetic Script with addional quarnic utils"
 readme = "README.md"
 dependencies = [
+    "altair>=6.0.0",
+    "datasets>=4.5.0",
     "diff-match-patch>=20241021",
+    "hf-transfer>=0.1.9",
+    "librosa>=0.11.0",
+    "marimo>=0.19.6",
     "numpy>=2.2.6",
+    "polars>=1.37.1",
+    "pytest>=8.4.1",
     "quran-transcript>=0.1.0",
     "rich>=14.1.0",
+    "soundfile>=0.13.1",
     "torch>=2.7.0",
+    "torchaudio>=2.8.0",
+    "torchcodec>=0.7.0,<0.8.0",  # 0.7 compatible with PyTorch 2.8
     "transformers>=4.55.0",
 ]
 requires-python = ">=3.10"
