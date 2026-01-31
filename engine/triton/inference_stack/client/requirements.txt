@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+numpy
+torch
+transformers
+tritonclient[grpc]
+python-multipart

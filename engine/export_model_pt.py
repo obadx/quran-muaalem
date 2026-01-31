@@ -86,21 +86,12 @@ def export_torchscript_for_triton(
 
 if __name__ == "__main__":
 
-    window_ms = 6000
-    chunk_ms = 300
-
     sampling_rate = 16000
 
-    
-
     # audio_path = "./assets/test.wav"
-    audio_path = "./assets/fatiha_long_track.wav"
-    device = "cuda"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     model_id = "obadx/muaalem-model-v3_2"
     dtype = torch.float16
-
-
-   
             
     mulit_level_tokenizer = MultiLevelTokenizer(model_id)
 

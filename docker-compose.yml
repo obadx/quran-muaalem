@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  triton:
+    build:
+      context: .
+      dockerfile: engine/triton/inference_stack/triton/Dockerfile
+    image: muaalem-triton:latest
+    runtime: nvidia
+    ports:
+      - "8000:8000"   # HTTP
+      - "8001:8001"   # gRPC
+      - "8002:8002"   # Metrics
+    shm_size: "1gb"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+
+  processor:
+    build:
+      context: .
+      dockerfile: engine/triton/inference_stack/client/Dockerfile
+    image: muaalem-client:latest
+    depends_on:
+      - triton
+    ports:
+      - "9000:9000"
