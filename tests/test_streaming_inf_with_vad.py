@@ -446,7 +446,7 @@ if __name__ == "__main__":
     chunk_ms = int(fix_chunk_length(chunk_ms))
     sampling_rate = 16000
     # audio_path = "./assets/test.wav"
-    audio_path = "../assets/fatiha_long_track.wav"
+    audio_path = "../assets/dussary_002282.mp3"
     device = "cuda"
     model_id = "obadx/muaalem-model-v3_2"
     dtype = torch.bfloat16
