@@ -39,23 +39,44 @@ class EngineResources:
     trt_path: Path | None = None
 
 
+from typing import Tuple
+import torch
+
 class _WrappedModel(torch.nn.Module):
     """
-    Simple wrapper to keep the forward signature torchscript / TensorRT friendly.
+    Returns per level:
+      logits: (B, T, V)
+      ids:    (B, T)  int64
+      probs:  (B, T)  float32  (prob of the chosen id at each frame)
     """
-
-    def __init__(self, model: Wav2Vec2BertForMultilevelCTC):
+    def __init__(self, model, levels=None):
         super().__init__()
         self.model = model
-        self.levels = list(model.level_to_lm_head.keys())
+        # IMPORTANT: fix ordering to match OUTPUT__* in config.pbtxt
+        self.levels = ["phonemes"]
 
     def forward(self, input_features: torch.Tensor) -> Tuple[torch.Tensor, ...]:
         logits_dict = self.model(
             input_features=input_features,
             attention_mask=None,
             return_dict=False,
-        )[0]
-        return tuple(logits_dict[level] for level in self.levels)
+        )[0]  # dict[level] -> (B, T, V)
+
+        outs = []
+        
+        logits = logits_dict["phonemes"]                 # (B, T, V)
+        ids = logits.argmax(dim=-1).to(torch.int64) # (B, T)
+
+        # probs of the chosen token per frame
+        probs = torch.softmax(logits.to(torch.float32), dim=-1) \
+                    .gather(dim=-1, index=ids.unsqueeze(-1)) \
+                    .squeeze(-1)                      # (B, T) float32
+
+        outs.extend([logits, ids, probs])
+
+
+
+        return tuple(outs)
 
 
 

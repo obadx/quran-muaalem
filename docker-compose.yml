@@ -15,6 +15,7 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
 
+
   processor:
     build:
       context: .

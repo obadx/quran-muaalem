@@ -7,7 +7,7 @@ input [
   {
     name: "INPUT__0"
     data_type: TYPE_FP16
-    dims: [-1, -1, 160]
+    dims: [ -1, 160 ]
   }
 ]
 
@@ -15,12 +15,17 @@ output [
   {
     name: "OUTPUT__0"
     data_type: TYPE_FP16
-    dims: [ -1, -1 ]
+    dims: [ -1, 43 ]   
   },
   {
     name: "OUTPUT__1"
-    data_type: TYPE_FP16
-    dims: [ -1, -1 ]
+    data_type: TYPE_INT64
+    dims: [ -1 ]
+  },
+  {
+    name: "OUTPUT__2"
+    data_type: TYPE_FP32
+    dims: [ -1 ]
   }
 ]
 
@@ -35,4 +40,3 @@ instance_group [
     count: 1
   }
 ]
-

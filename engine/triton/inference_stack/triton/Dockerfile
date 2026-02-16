@@ -28,17 +28,31 @@ ENV PYTHONPATH=/workspace/engine
 # -----------------------------
 # Export model at build time
 # -----------------------------
-WORKDIR /workspace/engine
+# WORKDIR /workspace/engine
 
-RUN python3 export_model_pt.py \
-    --model-id obadx/muaalem-model-v3_2 \
-    --output /models/muaalem/1/model.pt
+# # RUN python3 export_model_pt.py \
+# #     --model-id obadx/muaalem-model-v3_2 \
+# #     --output /models/muaalem/1/model.pt
+
+
+# RUN set -eux; \
+#     mkdir -p /models/muaalem/1; \
+#     python3 export_model_pt.py \
+#       --model-id obadx/muaalem-model-v3_2 \
+#       --output /models/muaalem/1/model.pt; \
+#     ls -lah /models/muaalem/1; \
+#     test -f /models/muaalem/1/model.pt
 
 # -----------------------------
 # Run Triton
 # -----------------------------
-CMD ["tritonserver", \
-     "--model-repository=/models", \
-     "--grpc-port=8001", \
-     "--http-port=8000", \
-     "--metrics-port=8002"]
+# CMD ["tritonserver", \
+#      "--model-repository=/models", \
+#      "--grpc-port=8001", \
+#      "--http-port=8000", \
+#      "--metrics-port=8002"]
+
+COPY engine/triton/inference_stack/triton/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]

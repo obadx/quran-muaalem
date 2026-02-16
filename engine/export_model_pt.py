@@ -84,19 +84,44 @@ def export_torchscript_for_triton(
     return scripted
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    sampling_rate = 16000
+#     sampling_rate = 16000
 
-    # audio_path = "./assets/test.wav"
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    model_id = "obadx/muaalem-model-v3_2"
-    dtype = torch.float16
+#     # audio_path = "./assets/test.wav"
+#     device = "cuda" if torch.cuda.is_available() else "cpu"
+#     model_id = "obadx/muaalem-model-v3_2"
+#     dtype = torch.float16
             
-    mulit_level_tokenizer = MultiLevelTokenizer(model_id)
+#     mulit_level_tokenizer = MultiLevelTokenizer(model_id)
 
-    model = Wav2Vec2BertForMultilevelCTC.from_pretrained(model_id)
-    model.to(device, dtype=dtype)
-    export_torchscript_for_triton(model_id,
-    sampling_rate,
-    device, dtype,3)
+#     model = Wav2Vec2BertForMultilevelCTC.from_pretrained(model_id)
+#     model.to(device, dtype=dtype)
+#     export_torchscript_for_triton(model_id,
+#     sampling_rate,
+#     device, dtype,3)
+
+
+
+if __name__ == "__main__":
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model-id", default=DEFAULT_MODEL_ID)
+    ap.add_argument("--output", required=True)
+    ap.add_argument("--sampling-rate", type=int, default=DEFAULT_SAMPLING_RATE)
+    ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
+    ap.add_argument("--dtype", default="fp16", choices=["fp16", "fp32"])
+    ap.add_argument("--example-seconds", type=float, default=3.0)
+    args = ap.parse_args()
+
+    dtype = torch.float16 if args.dtype == "fp16" else torch.float32
+
+    export_torchscript_for_triton(
+        model_id=args.model_id,
+        sampling_rate=args.sampling_rate,
+        device=args.device,
+        dtype=dtype,
+        example_seconds=args.example_seconds,
+        out_path=args.output,   # ✅ THIS is the missing link
+    )
