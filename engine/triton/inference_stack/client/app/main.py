@@ -1,3 +1,4 @@
+import io
 import time
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
@@ -5,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 import tritonclient.grpc as grpcclient
 from fastapi import FastAPI, UploadFile
+import librosa
 from transformers import AutoFeatureExtractor
 
 from quran_muaalem.modeling.multi_level_tokenizer import MultiLevelTokenizer
@@ -14,6 +16,7 @@ app = FastAPI()
 
 SAMPLE_RATE = 16000
 MODEL_NAME = "muaalem"
+
 mulit_level_tokenizer = MultiLevelTokenizer("obadx/muaalem-model-v3_2")
 
 processor = AutoFeatureExtractor.from_pretrained(
@@ -22,81 +25,69 @@ processor = AutoFeatureExtractor.from_pretrained(
 )
 
 triton = grpcclient.InferenceServerClient(url="triton:8001")
-
-# Size this to your CPU cores / workload. Start with something modest.
 CPU_POOL = ThreadPoolExecutor(max_workers=4)
 
-def decode_phonemes(ids: list, vocab):
+def decode_phonemes(ids: list[int], vocab) -> str:
     id_to_ph = {v: k for k, v in vocab["phonemes"].items()}
-    out_str = ""
-    for idx in ids:
-        out_str += id_to_ph[idx]
-    return out_str
+    return "".join(id_to_ph[i] for i in ids if i in id_to_ph)
 
-def preprocess_audio_bytes(audio_bytes: bytes) -> np.ndarray:
+def preprocess_waveform(wave: np.ndarray) -> np.ndarray:
     """
     Runs on a worker thread.
-    Returns FP16 features ready for Triton.
+    Input: wave float32 shape (n_samples,)
+    Output: features float16 shape (1, Tin, 160) matching Triton INPUT__0
     """
-    audio = np.frombuffer(audio_bytes, dtype=np.float32)
-
-    features = processor(
-        audio,
+    # IMPORTANT: return_tensors="np" so we get numpy arrays
+    feats = processor(
+        wave,
         sampling_rate=SAMPLE_RATE,
         return_tensors="np",
-        padding=True,
-    )["input_features"].astype(np.float16)
+        padding=False,
+    )["input_features"]  # usually float32, shape (1, Tin, 160)
 
-    return features
-
+    # Cast to float16 for Triton FP16 input
+    feats = np.ascontiguousarray(feats.astype(np.float16))
+    return feats
 
 @app.post("/infer")
 async def infer_audio(file: UploadFile):
     audio_bytes = await file.read()
 
-    loop = asyncio.get_running_loop()
+    # ✅ Correct way to use librosa.load with uploaded bytes
+    wave, sr = librosa.load(io.BytesIO(audio_bytes), sr=SAMPLE_RATE, mono=True)
 
-    # Offload CPU-heavy preprocessing so the event loop isn't blocked
-    features = await loop.run_in_executor(CPU_POOL, preprocess_audio_bytes, audio_bytes)
+    loop = asyncio.get_running_loop()
+    features = await loop.run_in_executor(CPU_POOL, preprocess_waveform, wave)
+
+    # Sanity checks (temporary)
+    # features should be (1, Tin, 160)
+    # print("features:", features.shape, features.dtype, features.min(), features.max(), features.mean())
 
     inp = grpcclient.InferInput("INPUT__0", features.shape, "FP16")
     inp.set_data_from_numpy(features)
 
-    out0 = grpcclient.InferRequestedOutput("OUTPUT__0")
-    out1 = grpcclient.InferRequestedOutput("OUTPUT__1")
-    out2 = grpcclient.InferRequestedOutput("OUTPUT__2")
-
+    outputs = [
+        grpcclient.InferRequestedOutput("OUTPUT__0"),
+        grpcclient.InferRequestedOutput("OUTPUT__1"),
+        grpcclient.InferRequestedOutput("OUTPUT__2"),
+    ]
 
     t0 = time.perf_counter()
-
-    # If this blocks noticeably too, you can offload it as well (see below).
-    res = triton.infer(
-        model_name=MODEL_NAME,
-        inputs=[inp],
-        outputs=[out0, out1, out2],
-    )
-
+    res = triton.infer(model_name=MODEL_NAME, inputs=[inp], outputs=outputs)
     latency_ms = (time.perf_counter() - t0) * 1000
-    
-    logits = res.as_numpy("OUTPUT__0")
-    ids    = res.as_numpy("OUTPUT__1")
-    probs  = res.as_numpy("OUTPUT__2")
 
-    print("logits shape:", logits.shape)   # must end with 43 for phonemes
-    print("ids shape:", ids.shape)
-    print("probs shape:", probs.shape)
-    print("ids unique:", sorted(set(ids.flatten().tolist()))[:20], "...")
-    ph_ids = ctc_decode(res.as_numpy("OUTPUT__1"), res.as_numpy("OUTPUT__2"))[0].ids.tolist()
+    logits = res.as_numpy("OUTPUT__0")  # (1,T,43)
+    ids    = res.as_numpy("OUTPUT__1")  # (1,T)
+    probs  = res.as_numpy("OUTPUT__2")  # (1,T)
+
+    # Debug (temporary)
+    # print("logits shape:", logits.shape)
+    # print("ids unique:", sorted(set(ids.flatten().tolist()))[:20])
+
+    # ✅ ctc_decode expects (B,T) ids and (B,T) probs
+    decoded0 = ctc_decode(ids, probs, blank_id=0)[0]  # consider setting blank_id to model.config.pad_token_id
+    ph_ids = decoded0.ids.tolist()
+
     decoded_ph = decode_phonemes(ph_ids, mulit_level_tokenizer.vocab)
 
-    return{
-        "latency_ms" : latency_ms,
-        "phonemes" : decoded_ph,
-    }
-    # return {
-    #     "latency_ms": latency_ms,
-    #     "output0_shape": res.as_numpy("OUTPUT__0").shape,
-    #     "output1_shape": res.as_numpy("OUTPUT__1").shape,
-    #     "output2_shape": res.as_numpy("OUTPUT__2").shape,
-    # }
-
+    return {"latency_ms": latency_ms, "phonemes": decoded_ph}

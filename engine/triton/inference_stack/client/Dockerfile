@@ -7,7 +7,8 @@ RUN pip install --no-cache-dir \
     transformers \
     accelerate \
     safetensors \
-    quran-muaalem 
+    quran-muaalem \
+    librosa
 
 COPY /engine/triton/inference_stack/client/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
