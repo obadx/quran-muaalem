@@ -3,8 +3,9 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
 import httpx
-from fastapi import FastAPI, UploadFile, File, Query, Body, Form
+from fastapi import FastAPI, UploadFile, File, Query, Form, Depends
 from fastapi.exceptions import HTTPException
+from pydantic import ValidationError
 
 from quran_transcript import quran_phonetizer, explain_error
 from quran_transcript.phonetics.moshaf_attributes import MoshafAttributes
@@ -18,7 +19,6 @@ from .types import (
     SearchResponse,
     SearchResultResponse,
     CorrectRecitationResponse,
-    CorrectRecitationRequest,
     ReciterErrorResponse,
     PhonemesSearchSpanApp,
     TajweedRuleApp,
@@ -174,6 +174,13 @@ def run_phonetization_and_error(
     return ref_phonetization.phonemes, error_responses
 
 
+def parse_moshaf_from_form(moshaf: str = Form(...)) -> MoshafAttributes:
+    try:
+        return MoshafAttributes.model_validate_json(moshaf, strict=True)
+    except ValidationError as e:
+        raise HTTPException(status_code=422, detail=e.errors())
+
+
 @app.post("/search", response_model=SearchResponse)
 async def search(
     file: UploadFile = File(default=None),
@@ -206,12 +213,10 @@ async def search(
 @app.post("/correct-recitation", response_model=CorrectRecitationResponse)
 async def correct_recitation(
     file: UploadFile = File(...),
-    request: CorrectRecitationRequest = Query(...),
+    moshaf: MoshafAttributes = Depends(parse_moshaf_from_form),
+    error_ratio: float = Form(default=app_settings.error_ratio),
 ):
-    print(request.moshaf.madd_aared_len)
-    moshaf = request.moshaf
-    error_ratio = request.error_ratio
-
+    print(moshaf.madd_aared_len)
     predicted_phonemes = await call_engine_predict(file)
 
     loop = asyncio.get_event_loop()

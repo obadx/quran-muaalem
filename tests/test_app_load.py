@@ -1,6 +1,7 @@
 import asyncio
 import time
 import argparse
+import json
 
 import httpx
 
@@ -70,11 +71,11 @@ async def send_correct_recitation_request(
 ):
     """Send a single /correct-recitation request and return its latency in seconds."""
     files = {"file": ("test.wav", file_bytes, "audio/wav")}
-    json_data = {"moshaf": moshaf, "error_ratio": error_ratio}
+    data = {"moshaf": json.dumps(moshaf), "error_ratio": str(error_ratio)}
     start = time.perf_counter()
     try:
         resp = await client.post(
-            f"{url}/correct-recitation", files=files, json=json_data
+            f"{url}/correct-recitation", files=files, data=data
         )
         resp.raise_for_status()
         if idx == 0:
