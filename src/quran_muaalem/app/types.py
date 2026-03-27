@@ -135,6 +135,17 @@ class CorrectRecitationResponse(BaseModel):
     )
 
 
+class CorrectRecitationNoMatchResponse(BaseModel):
+    """Response returned when no matching Quran span is found."""
+
+    predicted_phonemes: str = Field(
+        description="Phonetic text from audio prediction"
+    )
+    message: str = Field(
+        description="Reason why matching failed"
+    )
+
+
 def convert_form_value(value: str, field_type):
     """
     Convert a raw form string to the type expected by the model.
