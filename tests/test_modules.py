@@ -52,6 +52,12 @@ from quran_muaalem.explain import explain_for_terminal
             [-100, 1, 2, 3],
             [1, 1, 1],
         ),
+        (
+            [0, 1, 2, 3],
+            [],
+            [-100, -100, -100, -100],
+            [],
+        ),
     ],
 )
 def test_align_predicted_sequence(ref, pred, exp_out, exp_mask):
