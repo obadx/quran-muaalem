@@ -141,7 +141,7 @@ from librosa.core import load
 
 # Import the main Muaalem class (adjust import based on your actual package structure)
 from quran_muaalem import Muaalem
-
+from quran_muaalem.explain import  explain_for_terminal
 # Setup logging to see informative messages
 logging.basicConfig(level=logging.INFO)
 
