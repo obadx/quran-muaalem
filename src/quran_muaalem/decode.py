@@ -245,7 +245,7 @@ def align_predicted_sequence(
         return predicted, [True] * len(ref)
 
     if m == 0:
-        return [missing_placeholder] * n
+        return [missing_placeholder] * n, []
 
     dp = [[0] * (m + 1) for _ in range(n + 1)]
     choice = [[0] * (m + 1) for _ in range(n + 1)]
