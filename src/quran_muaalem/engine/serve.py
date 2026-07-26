@@ -7,7 +7,7 @@ import torch
 import litserve as ls
 from transformers import AutoFeatureExtractor
 import numpy as np
-from fastapi import File, UploadFile
+from fastapi import File, HTTPException, UploadFile
 
 from ..modeling.modeling_multi_level_ctc import Wav2Vec2BertForMultilevelCTC
 from ..modeling.multi_level_tokenizer import MultiLevelTokenizer
@@ -72,8 +72,21 @@ class QuranMuaalemAPI(ls.LitAPI):
             io.BytesIO(audio_bytes),
             sr=self.sampling_rate,
             mono=True,
-            duration=self.max_audio_seconds,  # Truncating input speech to max_audio_seconds
         )
+
+        # Rejecting instead of truncating: a truncated recitation is scored as
+        # if the missing tail was never recited, with nothing in the response
+        # to say so.
+        max_samples = round(self.max_audio_seconds * self.sampling_rate)
+        if len(audio_array) > max_samples:
+            raise HTTPException(
+                status_code=413,
+                detail=(
+                    f"Input audio is {len(audio_array) / sr:.2f}s long, over the"
+                    f" engine limit of {self.max_audio_seconds}s. Split the"
+                    " audio and send the parts separately."
+                ),
+            )
 
         features = self.processor(
             audio_array,
