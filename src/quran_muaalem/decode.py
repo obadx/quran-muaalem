@@ -245,7 +245,7 @@ def align_predicted_sequence(
         return predicted, [True] * len(ref)
 
     if m == 0:
-        return [missing_placeholder] * n
+        return [missing_placeholder] * n, []
 
     dp = [[0] * (m + 1) for _ in range(n + 1)]
     choice = [[0] * (m + 1) for _ in range(n + 1)]
@@ -357,8 +357,10 @@ def ctc_decode(
                         probs.append(
                             batch_probs[seq_idx][start:end].sum() / (end - start)
                         )
-                        tokens.append(next)
-                        probs.append(batch_probs[seq_idx][idx + 1])
+                        # the last item is only a token if it is not a blank
+                        if next != blank_id:
+                            tokens.append(next)
+                            probs.append(batch_probs[seq_idx][idx + 1])
                 # Normal Case
                 elif curr != next and curr != blank_id:
                     end = idx + 1

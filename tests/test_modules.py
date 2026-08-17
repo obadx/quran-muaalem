@@ -52,6 +52,12 @@ from quran_muaalem.explain import explain_for_terminal
             [-100, 1, 2, 3],
             [1, 1, 1],
         ),
+        (
+            [0, 1, 2, 3],
+            [],
+            [-100, -100, -100, -100],
+            [],
+        ),
     ],
 )
 def test_align_predicted_sequence(ref, pred, exp_out, exp_mask):
@@ -176,6 +182,36 @@ def test_align_predicted_sequence(ref, pred, exp_out, exp_mask):
             [
                 [0.25, 0.7],
                 [0.4, 0.8, 0.9, 0.6, 0.8],
+            ],
+        ),
+        # ends with a single blank: the blank is not a token
+        (
+            [
+                [0, 0, 0, 1, 2, 3, 4, 5, 0],
+            ],
+            [
+                [0.9, 0.9, 0.8, 0.3, 0.2, 0.9, 0.6, 0.8, 0.9],
+            ],
+            [
+                [1, 2, 3, 4, 5],
+            ],
+            [
+                [0.3, 0.2, 0.9, 0.6, 0.8],
+            ],
+        ),
+        # ends with a repeated token then a single blank
+        (
+            [
+                [0, 0, 1, 2, 2, 0],
+            ],
+            [
+                [0.9, 0.9, 0.3, 0.2, 0.4, 0.9],
+            ],
+            [
+                [1, 2],
+            ],
+            [
+                [0.3, 0.3],
             ],
         ),
     ],
