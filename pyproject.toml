@@ -10,14 +10,14 @@ license = "MIT"
 name = "quran-muaalem"
 version = "0.2.1"
 authors = [
-  { name="Abdullah", email="abdullahamlyossef@gmail.com" },
+  { name="Quran Muaalem Team", email="quran.muaalem@gmail.com" },
 ]
 description = "Quran Phonetic Script with addional quarnic utils"
 readme = "README.md"
 dependencies = [
     "diff-match-patch>=20241021",
     "numpy>=2.2.6",
-    "quran-transcript>=0.6.0",
+    "quran-transcript>=0.6.1",
     "rich>=14.1.0",
     "torch>=2.7.0",
     "transformers>=4.55.0",
