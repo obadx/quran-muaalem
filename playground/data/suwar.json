@@ -1,0 +1,574 @@
+{
+  "suwar": [
+    {
+      "name_ar": "الفاتحة",
+      "ayah_count": 7,
+      "start_page": 1
+    },
+    {
+      "name_ar": "البقرة",
+      "ayah_count": 286,
+      "start_page": 2
+    },
+    {
+      "name_ar": "آل عمران",
+      "ayah_count": 200,
+      "start_page": 50
+    },
+    {
+      "name_ar": "النساء",
+      "ayah_count": 176,
+      "start_page": 77
+    },
+    {
+      "name_ar": "المائدة",
+      "ayah_count": 120,
+      "start_page": 106
+    },
+    {
+      "name_ar": "الأنعام",
+      "ayah_count": 165,
+      "start_page": 128
+    },
+    {
+      "name_ar": "الأعراف",
+      "ayah_count": 206,
+      "start_page": 151
+    },
+    {
+      "name_ar": "الأنفال",
+      "ayah_count": 75,
+      "start_page": 177
+    },
+    {
+      "name_ar": "التوبة",
+      "ayah_count": 129,
+      "start_page": 187
+    },
+    {
+      "name_ar": "يونس",
+      "ayah_count": 109,
+      "start_page": 208
+    },
+    {
+      "name_ar": "هود",
+      "ayah_count": 123,
+      "start_page": 221
+    },
+    {
+      "name_ar": "يوسف",
+      "ayah_count": 111,
+      "start_page": 235
+    },
+    {
+      "name_ar": "الرعد",
+      "ayah_count": 43,
+      "start_page": 249
+    },
+    {
+      "name_ar": "إبراهيم",
+      "ayah_count": 52,
+      "start_page": 255
+    },
+    {
+      "name_ar": "الحجر",
+      "ayah_count": 99,
+      "start_page": 262
+    },
+    {
+      "name_ar": "النحل",
+      "ayah_count": 128,
+      "start_page": 267
+    },
+    {
+      "name_ar": "الإسراء",
+      "ayah_count": 111,
+      "start_page": 282
+    },
+    {
+      "name_ar": "الكهف",
+      "ayah_count": 110,
+      "start_page": 293
+    },
+    {
+      "name_ar": "مريم",
+      "ayah_count": 98,
+      "start_page": 305
+    },
+    {
+      "name_ar": "طه",
+      "ayah_count": 135,
+      "start_page": 312
+    },
+    {
+      "name_ar": "الأنبياء",
+      "ayah_count": 112,
+      "start_page": 322
+    },
+    {
+      "name_ar": "الحج",
+      "ayah_count": 78,
+      "start_page": 332
+    },
+    {
+      "name_ar": "المؤمنون",
+      "ayah_count": 118,
+      "start_page": 342
+    },
+    {
+      "name_ar": "النور",
+      "ayah_count": 64,
+      "start_page": 350
+    },
+    {
+      "name_ar": "الفرقان",
+      "ayah_count": 77,
+      "start_page": 359
+    },
+    {
+      "name_ar": "الشعراء",
+      "ayah_count": 227,
+      "start_page": 367
+    },
+    {
+      "name_ar": "النمل",
+      "ayah_count": 93,
+      "start_page": 377
+    },
+    {
+      "name_ar": "القصص",
+      "ayah_count": 88,
+      "start_page": 385
+    },
+    {
+      "name_ar": "العنكبوت",
+      "ayah_count": 69,
+      "start_page": 396
+    },
+    {
+      "name_ar": "الروم",
+      "ayah_count": 60,
+      "start_page": 404
+    },
+    {
+      "name_ar": "لقمان",
+      "ayah_count": 34,
+      "start_page": 411
+    },
+    {
+      "name_ar": "السجدة",
+      "ayah_count": 30,
+      "start_page": 415
+    },
+    {
+      "name_ar": "الأحزاب",
+      "ayah_count": 73,
+      "start_page": 418
+    },
+    {
+      "name_ar": "سبأ",
+      "ayah_count": 54,
+      "start_page": 428
+    },
+    {
+      "name_ar": "فاطر",
+      "ayah_count": 45,
+      "start_page": 434
+    },
+    {
+      "name_ar": "يس",
+      "ayah_count": 83,
+      "start_page": 440
+    },
+    {
+      "name_ar": "الصافات",
+      "ayah_count": 182,
+      "start_page": 446
+    },
+    {
+      "name_ar": "ص",
+      "ayah_count": 88,
+      "start_page": 453
+    },
+    {
+      "name_ar": "الزمر",
+      "ayah_count": 75,
+      "start_page": 458
+    },
+    {
+      "name_ar": "غافر",
+      "ayah_count": 85,
+      "start_page": 467
+    },
+    {
+      "name_ar": "فصلت",
+      "ayah_count": 54,
+      "start_page": 477
+    },
+    {
+      "name_ar": "الشورى",
+      "ayah_count": 53,
+      "start_page": 483
+    },
+    {
+      "name_ar": "الزخرف",
+      "ayah_count": 89,
+      "start_page": 489
+    },
+    {
+      "name_ar": "الدخان",
+      "ayah_count": 59,
+      "start_page": 496
+    },
+    {
+      "name_ar": "الجاثية",
+      "ayah_count": 37,
+      "start_page": 499
+    },
+    {
+      "name_ar": "الأحقاف",
+      "ayah_count": 35,
+      "start_page": 502
+    },
+    {
+      "name_ar": "محمد",
+      "ayah_count": 38,
+      "start_page": 507
+    },
+    {
+      "name_ar": "الفتح",
+      "ayah_count": 29,
+      "start_page": 511
+    },
+    {
+      "name_ar": "الحجرات",
+      "ayah_count": 18,
+      "start_page": 515
+    },
+    {
+      "name_ar": "ق",
+      "ayah_count": 45,
+      "start_page": 518
+    },
+    {
+      "name_ar": "الذاريات",
+      "ayah_count": 60,
+      "start_page": 520
+    },
+    {
+      "name_ar": "الطور",
+      "ayah_count": 49,
+      "start_page": 523
+    },
+    {
+      "name_ar": "النجم",
+      "ayah_count": 62,
+      "start_page": 526
+    },
+    {
+      "name_ar": "القمر",
+      "ayah_count": 55,
+      "start_page": 528
+    },
+    {
+      "name_ar": "الرحمن",
+      "ayah_count": 78,
+      "start_page": 531
+    },
+    {
+      "name_ar": "الواقعة",
+      "ayah_count": 96,
+      "start_page": 534
+    },
+    {
+      "name_ar": "الحديد",
+      "ayah_count": 29,
+      "start_page": 537
+    },
+    {
+      "name_ar": "المجادلة",
+      "ayah_count": 22,
+      "start_page": 542
+    },
+    {
+      "name_ar": "الحشر",
+      "ayah_count": 24,
+      "start_page": 545
+    },
+    {
+      "name_ar": "الممتحنة",
+      "ayah_count": 13,
+      "start_page": 549
+    },
+    {
+      "name_ar": "الصف",
+      "ayah_count": 14,
+      "start_page": 551
+    },
+    {
+      "name_ar": "الجمعة",
+      "ayah_count": 11,
+      "start_page": 553
+    },
+    {
+      "name_ar": "المنافقون",
+      "ayah_count": 11,
+      "start_page": 554
+    },
+    {
+      "name_ar": "التغابن",
+      "ayah_count": 18,
+      "start_page": 556
+    },
+    {
+      "name_ar": "الطلاق",
+      "ayah_count": 12,
+      "start_page": 558
+    },
+    {
+      "name_ar": "التحريم",
+      "ayah_count": 12,
+      "start_page": 560
+    },
+    {
+      "name_ar": "الملك",
+      "ayah_count": 30,
+      "start_page": 562
+    },
+    {
+      "name_ar": "القلم",
+      "ayah_count": 52,
+      "start_page": 564
+    },
+    {
+      "name_ar": "الحاقة",
+      "ayah_count": 52,
+      "start_page": 566
+    },
+    {
+      "name_ar": "المعارج",
+      "ayah_count": 44,
+      "start_page": 568
+    },
+    {
+      "name_ar": "نوح",
+      "ayah_count": 28,
+      "start_page": 570
+    },
+    {
+      "name_ar": "الجن",
+      "ayah_count": 28,
+      "start_page": 572
+    },
+    {
+      "name_ar": "المزمل",
+      "ayah_count": 20,
+      "start_page": 574
+    },
+    {
+      "name_ar": "المدثر",
+      "ayah_count": 56,
+      "start_page": 575
+    },
+    {
+      "name_ar": "القيامة",
+      "ayah_count": 40,
+      "start_page": 577
+    },
+    {
+      "name_ar": "الإنسان",
+      "ayah_count": 31,
+      "start_page": 578
+    },
+    {
+      "name_ar": "المرسلات",
+      "ayah_count": 50,
+      "start_page": 580
+    },
+    {
+      "name_ar": "النبأ",
+      "ayah_count": 40,
+      "start_page": 582
+    },
+    {
+      "name_ar": "النازعات",
+      "ayah_count": 46,
+      "start_page": 583
+    },
+    {
+      "name_ar": "عبس",
+      "ayah_count": 42,
+      "start_page": 585
+    },
+    {
+      "name_ar": "التكوير",
+      "ayah_count": 29,
+      "start_page": 586
+    },
+    {
+      "name_ar": "الانفطار",
+      "ayah_count": 19,
+      "start_page": 587
+    },
+    {
+      "name_ar": "المطففين",
+      "ayah_count": 36,
+      "start_page": 587
+    },
+    {
+      "name_ar": "الانشقاق",
+      "ayah_count": 25,
+      "start_page": 589
+    },
+    {
+      "name_ar": "البروج",
+      "ayah_count": 22,
+      "start_page": 590
+    },
+    {
+      "name_ar": "الطارق",
+      "ayah_count": 17,
+      "start_page": 591
+    },
+    {
+      "name_ar": "الأعلى",
+      "ayah_count": 19,
+      "start_page": 591
+    },
+    {
+      "name_ar": "الغاشية",
+      "ayah_count": 26,
+      "start_page": 592
+    },
+    {
+      "name_ar": "الفجر",
+      "ayah_count": 30,
+      "start_page": 593
+    },
+    {
+      "name_ar": "البلد",
+      "ayah_count": 20,
+      "start_page": 594
+    },
+    {
+      "name_ar": "الشمس",
+      "ayah_count": 15,
+      "start_page": 595
+    },
+    {
+      "name_ar": "الليل",
+      "ayah_count": 21,
+      "start_page": 595
+    },
+    {
+      "name_ar": "الضحى",
+      "ayah_count": 11,
+      "start_page": 596
+    },
+    {
+      "name_ar": "الشرح",
+      "ayah_count": 8,
+      "start_page": 596
+    },
+    {
+      "name_ar": "التين",
+      "ayah_count": 8,
+      "start_page": 597
+    },
+    {
+      "name_ar": "العلق",
+      "ayah_count": 19,
+      "start_page": 597
+    },
+    {
+      "name_ar": "القدر",
+      "ayah_count": 5,
+      "start_page": 598
+    },
+    {
+      "name_ar": "البينة",
+      "ayah_count": 8,
+      "start_page": 598
+    },
+    {
+      "name_ar": "الزلزلة",
+      "ayah_count": 8,
+      "start_page": 599
+    },
+    {
+      "name_ar": "العاديات",
+      "ayah_count": 11,
+      "start_page": 599
+    },
+    {
+      "name_ar": "القارعة",
+      "ayah_count": 11,
+      "start_page": 600
+    },
+    {
+      "name_ar": "التكاثر",
+      "ayah_count": 8,
+      "start_page": 600
+    },
+    {
+      "name_ar": "العصر",
+      "ayah_count": 3,
+      "start_page": 601
+    },
+    {
+      "name_ar": "الهمزة",
+      "ayah_count": 9,
+      "start_page": 601
+    },
+    {
+      "name_ar": "الفيل",
+      "ayah_count": 5,
+      "start_page": 601
+    },
+    {
+      "name_ar": "قريش",
+      "ayah_count": 4,
+      "start_page": 602
+    },
+    {
+      "name_ar": "الماعون",
+      "ayah_count": 7,
+      "start_page": 602
+    },
+    {
+      "name_ar": "الكوثر",
+      "ayah_count": 3,
+      "start_page": 602
+    },
+    {
+      "name_ar": "الكافرون",
+      "ayah_count": 6,
+      "start_page": 603
+    },
+    {
+      "name_ar": "النصر",
+      "ayah_count": 3,
+      "start_page": 603
+    },
+    {
+      "name_ar": "المسد",
+      "ayah_count": 5,
+      "start_page": 603
+    },
+    {
+      "name_ar": "الإخلاص",
+      "ayah_count": 4,
+      "start_page": 604
+    },
+    {
+      "name_ar": "الفلق",
+      "ayah_count": 5,
+      "start_page": 604
+    },
+    {
+      "name_ar": "الناس",
+      "ayah_count": 6,
+      "start_page": 604
+    }
+  ]
+}

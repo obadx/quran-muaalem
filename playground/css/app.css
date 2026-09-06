@@ -1,0 +1,1353 @@
+/* ===================================
+   QuranApp - Mushaf Display Styles
+   Adopted from AlKetab-Extracted
+   Uses container queries for perfect scaling
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2c5530;
+    --secondary-color: #d4af37;
+    --bg-color: #fefaf1;
+    --text-color: #141414;
+    --border-color: #e0d4b8;
+    --accent: #cc9951;
+    --accent-lighter: #dba252;
+    --accent-darker: #b88949;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --highlight-color: #ebe7df;
+    --highlight-persistent: rgba(255, 235, 59, 0.5);
+    --header-border: hsla(0, 0%, 50%, 0.2);
+    --modal-bg: #f5f5f5;
+    --modal-content-bg: #fff;
+    --item-hover-color: #fff;
+    --tafseer-bg: #faf8f3;
+    --tafseer-box-bg: #fff;
+    --tafseer-box-border: #e8e4dc;
+    --surah-frame-bg: #fff5ea;
+    --ayah-marker-color: #69572e;
+}
+
+/* Dark Mode */
+[data-theme='dark'] {
+    --primary-color: #4a8f50;
+    --secondary-color: #e5c158;
+    --bg-color: #1a1a2e;
+    --text-color: #e8e8e8;
+    --border-color: #3a3a5c;
+    --accent: #dba252;
+    --accent-lighter: #e5b663;
+    --accent-darker: #c89540;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    --highlight-color: #3a3a5c;
+    --highlight-persistent: rgba(255, 235, 59, 0.3);
+    --header-border: hsla(0, 0%, 70%, 0.2);
+    --modal-bg: #2a2a4a;
+    --modal-content-bg: #1a1a2e;
+    --item-hover-color: #fff;
+    --tafseer-bg: #1a1a2e;
+    --tafseer-box-bg: #2a2a4a;
+    --tafseer-box-border: #3a3a5c;
+    --surah-frame-bg: #2a2a4a;
+    --ayah-marker-color: #ffffff;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+
+body {
+    font-family: Kitab, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    direction: rtl;
+    overscroll-behavior-y: contain;
+}
+
+/* ===================================
+   Loading Screen
+   =================================== */
+
+#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading p {
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+/* ===================================
+   Main App Layout
+   =================================== */
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* ===================================
+   Page Container - Mushaf Style
+   =================================== */
+
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+/* ===================================
+   Quran Page - Container Query Based
+   =================================== */
+
+.quran-page {
+    aspect-ratio: 720 / 1280;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===================================
+   Page Content - 15 Lines Grid
+   =================================== */
+
+.page-content {
+    width: 98%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ===================================
+   Quran Line - Container Query Units
+   =================================== */
+
+.quran-line {
+    display: block;
+    text-align: justify;
+    text-align-last: center;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    font-size: 5.72cqi;
+    letter-spacing: -0.2cqi;
+    line-height: 1.82;
+    width: 100%;
+    white-space: nowrap;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.quran-line.empty-line {
+    visibility: hidden;
+}
+
+.quran-line.centered {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.64cqi;
+    text-align: center;
+    text-align-last: center;
+    letter-spacing: 0.08cqi;
+    line-height: 1.12;
+    margin-inline: auto;
+    width: 100% !important;
+}
+
+.quran-line.centered:not(:has(.word, .surah-name, .basmalah)) {
+    display: none;
+}
+
+/* ===================================
+   QCF4 Font Glyphs
+   =================================== */
+
+.qcf {
+    display: inline;
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+    position: relative;
+}
+
+.qcf.word {
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 1;
+}
+
+.qcf.ayah-marker {
+    color: var(--ayah-marker-color);
+    -webkit-text-stroke: 0.02cqi var(--ayah-marker-color);
+}
+
+.qcf.waqf {
+    display: inline-flex;
+    letter-spacing: 0cqi;
+    z-index: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Surah Name Header Frame */
+.qcf.surah-name {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 9.4cqi;
+    margin: 0;
+    padding-bottom: 0.4cqi;
+    background-color: #fff5ea;
+    background-image: radial-gradient(circle, transparent 0%, transparent 50%, var(--accent) 100%, var(--accent) 100%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 1.4cqi;
+    box-shadow: inset 0 0 0 0.2cqi #bb8b49;
+    color: #664628;
+    letter-spacing: normal;
+    text-align: center !important;
+    text-align-last: center !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Basmalah */
+.qcf.basmalah {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 5.76cqi;
+    text-align: center !important;
+    text-align-last: center !important;
+}
+
+/* ===================================
+   Ayah Grouping & Highlighting
+   =================================== */
+
+.ayah-group {
+    display: inline;
+    position: relative;
+    cursor: pointer;
+    unicode-bidi: bidi-override;
+}
+
+.ayah-group span {
+    z-index: 1;
+    position: relative;
+}
+
+.ayah-group::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 155%;
+    width: 100%;
+    /* Fallback for Safari without cqi support */
+    -webkit-transform: translateX(0.5%) translateY(-50%);
+    transform: translateX(0.5%) translateY(-50%);
+    cursor: pointer;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    z-index: 0;
+    /* Force layer creation on Safari for better rendering */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+@supports (transform: translateX(0.5cqi)) {
+    .ayah-group::before {
+        transform: translateX(0.5cqi) translateY(-50%);
+    }
+}
+
+.ayah-group:hover::before,
+.ayah-group.highlighted-verse::before {
+    background-color: var(--highlight-color);
+}
+
+/* Safari fix for hover highlight - use box-shadow instead of ::before */
+.is-safari .ayah-group:hover,
+.is-safari .ayah-group.highlighted-verse {
+    background-color: var(--highlight-color);
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    /* Extend highlight vertically using box-shadow */
+    box-shadow: 0 -0.12em 0 var(--highlight-color),
+                0 0.12em 0 var(--highlight-color);
+}
+
+/* Persistent highlight styles are defined after animations at the bottom */
+
+.ayah-group.bookmarked::before {
+    background-color: #dbd1c8 !important;
+}
+
+/* ===================================
+   Page Header
+   =================================== */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 6.24cqi !important;
+    padding-inline: 3.2cqi;
+    margin-bottom: 1.5cqi;
+    border-bottom: 1px solid var(--header-border);
+    font-family: qcf40, 'Traditional Arabic', serif;
+    font-size: 3.2cqi;
+    line-height: 1;
+    cursor: pointer;
+    direction: rtl;
+}
+
+.header-juz {
+    flex: 1;
+    text-align: right;
+    pointer-events: none;
+    font-weight: normal;
+}
+
+.header-face-indicator {
+    flex: 0;
+    white-space: nowrap;
+    padding: 0 2cqi;
+    color: var(--accent);
+    font-size: 1.2em;
+    pointer-events: none;
+}
+
+.header-surah {
+    flex: 1;
+    text-align: left;
+    pointer-events: none;
+    font-weight: normal;
+}
+
+/* ===================================
+   Page Footer
+   =================================== */
+
+.page-footer {
+    display: flex;
+    width: 100%;
+    /* Keep generic height scaling */
+    height: 8cqi !important;
+    padding: 0;
+    margin-top: 1.5cqi;
+    border-top: 1px solid #d8d8d8;
+    font-family: 'Kitab', sans-serif;
+    font-size: 3.56cqi;
+    cursor: default;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-footer[data-page-face="right"] {
+    justify-content: flex-start;
+}
+
+.page-footer[data-page-face="left"] {
+    justify-content: flex-end;
+}
+
+
+
+/* ===================================
+   Navigation Overlay
+   =================================== */
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+}
+
+#overlay.active {
+    display: flex;
+}
+
+.nav-modal {
+    background: var(--modal-bg);
+    border-radius: 10px;
+    width: 360px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    margin: -4px -4px 0 -4px;
+    width: calc(100% + 8px);
+}
+
+.nav-header h3 {
+    font-family: 'Kitab', 'Traditional Arabic', serif;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.nav-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.nav-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 0.5rem;
+    background: var(--modal-content-bg);
+    border-radius: 8px;
+}
+
+.nav-tab {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.nav-tab.active {
+    background: var(--accent);
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background: var(--modal-content-bg);
+    border-radius: 8px;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.nav-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--modal-content-bg);
+    border-radius: 8px;
+    cursor: pointer;
+    gap: 0.5rem;
+    font-size: 19.32px;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.nav-list-item:hover {
+    background: var(--accent);
+    color: var(--item-hover-color);
+}
+
+.nav-list-item .item-number {
+    width: 24px;
+    height: 24px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.nav-list-item:hover .item-number {
+    background: #fff;
+    color: var(--accent);
+}
+
+.nav-list-item .item-name {
+    flex: 1;
+    text-align: right;
+    font-size: 1.1rem;
+    font-family: 'qcf40', serif;
+}
+
+.nav-list-item .item-page {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.nav-list-item:hover .item-page {
+    color: #fff;
+}
+
+/* ===================================
+   Navigation Arrows
+   =================================== */
+
+/* Navigation Arrows - Floating (Hidden) */
+.nav-arrow {
+    display: none !important;
+}
+
+/* Footer Navigation Arrows */
+.footer-nav-arrow {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 2.5em;
+    /* Larger arrow */
+    cursor: pointer;
+    /* Full height and large width */
+    height: 100%;
+    min-width: 15cqi;
+    /* Wide click area */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: all 0.2s;
+}
+
+.footer-nav-arrow:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.footer-nav-arrow:active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.page-number {
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* Remove border from number as per new clean design */
+    border: none !important;
+    /* Larger font size */
+    font-size: 1.3em;
+    /* Visual adjustment to center Arabic numerals vertically */
+    padding-top: 0.8cqi;
+}
+
+
+/* ===================================
+   Error States
+   =================================== */
+
+.error {
+    color: #c82333;
+    text-align: center;
+    padding: 2rem;
+    font-size: 18px;
+}
+
+.error-screen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-screen h2 {
+    color: #c82333;
+    margin-bottom: 1rem;
+}
+
+.error-screen button {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* ===================================
+   Scrollbar Styling
+   =================================== */
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* ===================================
+   Mark Highlight
+   =================================== */
+
+mark {
+    background-color: transparent;
+    color: #966e36;
+    font-weight: 600;
+}
+
+/* ===================================
+   Tafseer Modal
+   =================================== */
+
+#tafseerOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#tafseerOverlay.active {
+    display: flex;
+}
+
+.tafseer-modal {
+    background: var(--tafseer-bg);
+    border-radius: 12px;
+    width: 600px;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.tafseer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--accent);
+    color: #fff;
+}
+
+.tafseer-header h3 {
+    margin: 0;
+    font-family: 'Kitab', 'Traditional Arabic', serif;
+    font-size: 1.25rem;
+}
+
+.tafseer-title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tafseer-play {
+    background: #ffffff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.tafseer-play .icon {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 0 7px 11px;
+    border-color: transparent transparent transparent #2e7d32;
+    /* Green play triangle */
+    margin-left: 3px;
+    /* Optical adjustment */
+    transition: all 0.2s;
+}
+
+.tafseer-play.playing .icon {
+    width: 12px;
+    height: 12px;
+    border: none;
+    background-color: #c62828;
+    /* Red stop square */
+    margin-left: 0;
+    border-radius: 2px;
+}
+
+.tafseer-play:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tafseer-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.tafseer-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.tafseer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tafseer-box {
+    background: var(--tafseer-box-bg);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--tafseer-box-border);
+}
+
+.tafseer-box-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent);
+}
+
+/* Arabic Tafseer Box */
+.tafseer-ar {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Ensure text uses variable color (fixes dark mode) */
+.tafseer-box p {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+@keyframes highlightFadeIn {
+    from {
+        background-color: transparent;
+    }
+
+    to {
+        background-color: var(--highlight-persistent);
+    }
+}
+
+@-webkit-keyframes highlightFadeIn {
+    from {
+        background-color: transparent;
+    }
+
+    to {
+        background-color: var(--highlight-persistent);
+    }
+}
+
+.ayah-group.persistent-highlight::before {
+    /* Safari fix: set background directly with !important to ensure it applies */
+    background-color: var(--highlight-persistent) !important;
+    /* Animation for smooth fade-in (works on Chrome, may not work on Safari) */
+    -webkit-animation: highlightFadeIn 1s ease-out forwards;
+    animation: highlightFadeIn 1s ease-out forwards;
+    /* Positioning with hardware acceleration for mobile Safari */
+    -webkit-transform: translateX(0.5%) translateY(-50%) translateZ(0);
+    transform: translateX(0.5%) translateY(-50%) translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Safari fallback: use background directly on element instead of ::before */
+.ayah-group.safari-highlight-fix {
+    position: relative;
+    background-color: var(--safari-highlight, rgba(255, 235, 59, 0.5)) !important;
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    /* Extend highlight vertically using box-shadow (0.12em to avoid pushing content) */
+    box-shadow: 0 -0.12em 0 var(--safari-highlight, rgba(255, 235, 59, 0.5)),
+                0 0.12em 0 var(--safari-highlight, rgba(255, 235, 59, 0.5));
+}
+
+.tafseer-ar .tafseer-box-title {
+    font-family: 'Kitab', 'Traditional Arabic', serif;
+}
+
+.tafseer-ar p {
+    font-family: 'Kitab', 'Traditional Arabic', serif;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* English Translation Box */
+.tafseer-en {
+    direction: ltr;
+    text-align: left;
+}
+
+.tafseer-en .tafseer-box-title {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+}
+
+.tafseer-en p {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Tafseer content scrollbar */
+.tafseer-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tafseer-content::-webkit-scrollbar-track {
+    background: #f0ebe3;
+    border-radius: 3px;
+}
+
+.tafseer-content::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 3px;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .tafseer-modal {
+        max-height: 95vh;
+    }
+
+    .tafseer-ar p {
+        font-size: 1rem;
+        line-height: 1.9;
+    }
+
+    .tafseer-en p {
+        font-size: 0.95rem;
+    }
+}
+
+/* ===================================
+   Quran Muaalem — Toolbar
+   =================================== */
+
+.muaalem-toolbar {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.toolbar-status {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Kitab', sans-serif;
+    margin-bottom: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    max-width: 90%;
+    text-align: center;
+}
+
+.toolbar-status.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toolbar-status.recording {
+    background: rgba(198, 40, 40, 0.9);
+}
+
+.toolbar-status.processing {
+    background: rgba(44, 85, 48, 0.9);
+}
+
+.toolbar-status.success {
+    background: rgba(44, 85, 48, 0.95);
+}
+
+.toolbar-status.following {
+    background: rgba(21, 101, 192, 0.9);
+}
+
+.toolbar-status.error {
+    background: rgba(198, 40, 40, 0.9);
+}
+
+.toolbar-buttons {
+    display: flex;
+    gap: 12px;
+    padding: 10px 20px;
+    margin-bottom: env(safe-area-inset-bottom, 8px);
+    background: rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 28px;
+    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .toolbar-buttons {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.toolbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    font-family: 'Kitab', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #fff;
+}
+
+.toolbar-btn .btn-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.search-btn {
+    background: var(--primary-color);
+}
+
+.search-btn:hover {
+    background: #3a6b3f;
+}
+
+.recite-btn {
+    background: var(--accent);
+}
+
+.recite-btn:hover {
+    background: var(--accent-darker);
+}
+
+.recite-btn.has-selection {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
+}
+
+/* Recording state — pulsing red */
+.toolbar-btn.recording {
+    background: #c62828 !important;
+    animation: pulse-recording 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse-recording {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(198, 40, 40, 0); }
+}
+
+/* Processing state */
+.toolbar-btn.processing {
+    background: #666 !important;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Following state — pulsing blue */
+.toolbar-btn.following {
+    background: #1565c0 !important;
+    animation: pulse-following 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-following {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(21, 101, 192, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(21, 101, 192, 0); }
+}
+
+/* ===================================
+   Error Highlights on Mushaf
+   =================================== */
+
+.qcf.error-highlight {
+    position: relative;
+}
+
+.qcf.error-highlight::after {
+    content: "";
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.qcf.error-tajweed::after {
+    background: #e65100;
+}
+
+.qcf.error-speech::after {
+    background: #c62828;
+}
+
+/* ===================================
+   Results Overlay (same style as Tafseer)
+   =================================== */
+
+#resultsOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#resultsOverlay.active {
+    display: flex;
+}
+
+.results-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.results-header-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.results-header-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Results content uses tafseer-content from tafseer styles */
+#resultsPanelContent {
+    direction: rtl;
+}
+
+/* Score Badge */
+.results-score {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.score-number {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: -apple-system, sans-serif;
+    line-height: 1;
+}
+
+.score-label {
+    font-size: 1rem;
+    font-family: 'Kitab', sans-serif;
+}
+
+.score-excellent {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.score-good {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.score-fair {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.score-poor {
+    background: #fce4ec;
+    color: #c62828;
+}
+
+[data-theme='dark'] .score-excellent { background: rgba(46, 125, 50, 0.2); }
+[data-theme='dark'] .score-good { background: rgba(21, 101, 192, 0.2); }
+[data-theme='dark'] .score-fair { background: rgba(230, 81, 0, 0.2); }
+[data-theme='dark'] .score-poor { background: rgba(198, 40, 40, 0.2); }
+
+/* Uthmani text in results */
+.results-text {
+    margin-bottom: 12px;
+}
+
+.uthmani-text {
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: 1.3rem;
+    line-height: 2;
+    text-align: center;
+    color: var(--text-color);
+    padding: 8px;
+    background: var(--tafseer-box-bg);
+    border-radius: 8px;
+    border: 1px solid var(--tafseer-box-border);
+}
+
+.uthmani-error-word {
+    text-decoration: underline wavy #c62828;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 10px;
+    color: #c62828;
+}
+
+/* Perfect recitation */
+.result-perfect {
+    text-align: center;
+    padding: 20px;
+    color: #2e7d32;
+}
+
+.result-perfect .perfect-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.result-perfect p {
+    font-family: 'Kitab', sans-serif;
+    font-size: 1.1rem;
+}
+
+/* Error Items — grouped by word */
+.errors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.error-word-group {
+    background: var(--tafseer-box-bg);
+    border: 1px solid var(--tafseer-box-border);
+    border-radius: 10px;
+    padding: 12px;
+    border-right: 4px solid #e65100;
+}
+
+.error-word-group.word-group-speech {
+    border-right-color: #c62828;
+}
+
+.error-word-title {
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #c62828;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--tafseer-box-border);
+}
+
+.error-item-sub {
+    padding: 6px 0;
+}
+
+.error-item-sub + .error-item-sub {
+    border-top: 1px dashed var(--tafseer-box-border);
+    margin-top: 4px;
+    padding-top: 8px;
+}
+
+.error-item-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.error-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Kitab', sans-serif;
+}
+
+.tag-tajweed {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.tag-speech {
+    background: #fce4ec;
+    color: #c62828;
+}
+
+[data-theme='dark'] .tag-tajweed { background: rgba(230, 81, 0, 0.2); }
+[data-theme='dark'] .tag-speech { background: rgba(198, 40, 40, 0.2); }
+
+.error-tag-en {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+}
+
+.phoneme-compare {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    direction: rtl;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.phoneme-expected {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.phoneme-predicted {
+    background: #fce4ec;
+    color: #c62828;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.phoneme-arrow {
+    color: #888;
+    font-size: 16px;
+}
+
+[data-theme='dark'] .phoneme-expected { background: rgba(46, 125, 50, 0.2); }
+[data-theme='dark'] .phoneme-predicted { background: rgba(198, 40, 40, 0.2); }
+
+.error-detail {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    font-family: 'Kitab', sans-serif;
+}
+
+/* Toolbar is in-flow inside #app — no padding needed */

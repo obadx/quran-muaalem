@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse
 from pydantic import Json
 
 
-from quran_transcript import quran_phonetizer, explain_error
+from quran_transcript import Aya, quran_phonetizer, explain_error
 from quran_transcript.phonetics.moshaf_attributes import MoshafAttributes
 from quran_transcript.phonetics.search import (
     PhoneticSearch,
@@ -453,15 +453,21 @@ curl -X POST "http://localhost:8001/correct-recitation" \\
 )
 async def correct_recitation(
     file: Annotated[
-        UploadFile, File(description="Audio file (WAV recommended) to analyze")
-    ],
+        Optional[UploadFile], File(description="Audio file (WAV recommended) to analyze")
+    ] = None,
     phonetic_text: str = Form(
         default="", description="Direct phonetic text input (alternative to audio)"
+    ),
+    sura_idx: Optional[int] = Form(
+        default=None, description="Sura number (1-114). If provided with aya_idx, skips search."
+    ),
+    aya_idx: Optional[int] = Form(
+        default=None, description="Aya number within the sura. If provided with sura_idx, skips search."
     ),
     moshaf: MoshafAttributes = Depends(correct_recitation_form_dependency()),
     error_ratio: Annotated[float, Form(ge=0.0, le=1)] = app_settings.error_ratio,
 ):
-    if file:
+    if file and file.size:
         predicted_phonemes = await call_engine_predict(file)
     elif phonetic_text:
         predicted_phonemes = phonetic_text
@@ -472,12 +478,36 @@ async def correct_recitation(
 
     loop = asyncio.get_event_loop()
 
-    search_results, message = await loop.run_in_executor(
-        get_search_executor(),
-        run_phonetic_search,
-        predicted_phonemes,
-        error_ratio,
-    )
+    if sura_idx is not None and aya_idx is not None:
+        # Skip search — use the specified ayah directly
+        aya = Aya(sura_idx, aya_idx).get()
+        uthmani_text = aya.uthmani
+        num_words = len(aya.uthmani_words)
+        best_result = SearchResultResponse(
+            start=PhonemesSearchSpanApp(
+                sura_idx=sura_idx,
+                aya_idx=aya_idx,
+                uthmani_word_idx=0,
+                uthmani_char_idx=0,
+                phonemes_idx=0,
+            ),
+            end=PhonemesSearchSpanApp(
+                sura_idx=sura_idx,
+                aya_idx=aya_idx,
+                uthmani_word_idx=num_words,
+                uthmani_char_idx=0,
+                phonemes_idx=0,
+            ),
+            uthmani_text=uthmani_text,
+        )
+    else:
+        # No ayah specified — search as before
+        search_results, message = await loop.run_in_executor(
+            get_search_executor(),
+            run_phonetic_search,
+            predicted_phonemes,
+            error_ratio,
+        )
 
     if not search_results:
         return JSONResponse(
@@ -488,7 +518,7 @@ async def correct_recitation(
             ).model_dump(),
         )
 
-    best_result = search_results[0]
+        best_result = search_results[0]
 
     reference_phonemes, errors = await loop.run_in_executor(
         get_phonetization_executor(),
@@ -545,3 +575,16 @@ async def transcript(
     """Transcribe audio to phonetic script (proxy to engine)."""
     phonemes = await call_engine_predict(file)
     return TranscriptResponse(phonemes=phonemes, sifat=None)
+
+
+# Serve the playground UI if the directory exists in the current working directory.
+# This allows users to open http://localhost:8001 and get the interactive Mushaf.
+from pathlib import Path
+
+_playground_dir = Path("playground")
+if _playground_dir.is_dir():
+    from fastapi.staticfiles import StaticFiles
+
+    app.mount(
+        "/", StaticFiles(directory=str(_playground_dir), html=True), name="playground"
+    )

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصحف القرآن المعلم</title>
+
+    <!-- SEO -->
+    <meta name="description" content="مصحف القرآن المعلم — تصحيح التلاوة بالذكاء الاصطناعي مع التفسير الميسر والترجمة الإنجليزية">
+    <meta name="keywords" content="قرآن, مصحف, تجويد, تلاوة, تصحيح, القرآن المعلم, Quran, Mushaf, Tajweed">
+    <meta name="author" content="القرآن المعلم">
+    <meta property="og:title" content="مصحف القرآن المعلم">
+    <meta property="og:description" content="تصحيح التلاوة بالذكاء الاصطناعي مع التفسير الميسر والترجمة الإنجليزية">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quran.alketab.app">
+    <meta name="theme-color" content="#2c5530">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="القرآن المعلم">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- QCF4 Fonts -->
+    <link rel="stylesheet" href="css/qcf4-fonts.css">
+
+    <!-- App Styles -->
+    <link rel="stylesheet" href="css/app.css?v=7.0">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>جاري تحميل المصحف الشريف...</p>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" style="display: none;">
+        <!-- Navigation Arrows -->
+        <button class="nav-arrow nav-arrow-prev" id="prevPageBtn" aria-label="الصفحة السابقة">
+            <span>‹</span>
+        </button>
+        <button class="nav-arrow nav-arrow-next" id="nextPageBtn" aria-label="الصفحة التالية">
+            <span>›</span>
+        </button>
+
+        <!-- Page Container -->
+        <main class="page-container" id="pageContainer">
+            <!-- Rendered page will go here -->
+        </main>
+
+        <!-- Quran Muaalem Toolbar -->
+        <div id="muaalemToolbar" class="muaalem-toolbar">
+            <div id="toolbarStatus" class="toolbar-status"></div>
+            <div class="toolbar-buttons">
+                <button id="searchBtn" class="toolbar-btn search-btn" aria-label="بحث بالصوت">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <span class="btn-label">بحث</span>
+                </button>
+                <button id="reciteBtn" class="toolbar-btn recite-btn" aria-label="تصحيح التلاوة">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="23"/>
+                        <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                    <span class="btn-label">تلاوة</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Overlay -->
+    <div id="overlay">
+        <div class="nav-modal">
+            <div class="nav-header">
+                <h3 id="overlay-title">الفهرس</h3>
+                <button class="nav-close" id="overlayClose">✕</button>
+            </div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="surahs">السور</button>
+                <button class="nav-tab" data-tab="juz">الأجزاء</button>
+            </div>
+            <div class="nav-content">
+                <div id="surahs-list" class="nav-list"></div>
+                <div id="juz-list" class="nav-list" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tafseer Overlay -->
+    <div id="tafseerOverlay">
+        <div class="tafseer-modal">
+            <div class="tafseer-header">
+                <div class="tafseer-title-container">
+                    <button class="tafseer-play" id="tafseerPlay"><span class="icon"></span></button>
+                    <h3 id="tafseer-title">تفسير الآية</h3>
+                </div>
+                <button class="tafseer-close" id="tafseerClose">✕</button>
+            </div>
+            <div class="tafseer-content">
+                <!-- Arabic Tafseer Box -->
+                <div class="tafseer-box tafseer-ar">
+                    <h4 class="tafseer-box-title">التفسير الميسر</h4>
+                    <p id="tafseer-ar-text" dir="rtl"></p>
+                </div>
+                <!-- English Translation Box -->
+                <div class="tafseer-box tafseer-en">
+                    <h4 class="tafseer-box-title">Saheeh International</h4>
+                    <p id="tafseer-en-text" dir="ltr"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Overlay (same style as Tafseer) -->
+    <div id="resultsOverlay">
+        <div class="tafseer-modal">
+            <div class="tafseer-header">
+                <div class="tafseer-title-container">
+                    <button class="tafseer-play" id="resultsPlay"><span class="icon"></span></button>
+                    <h3 id="results-title">نتيجة التلاوة</h3>
+                </div>
+                <div class="results-header-actions">
+                    <button id="retryBtn" class="results-header-btn" aria-label="إعادة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                            <polyline points="23 4 23 10 17 10"/>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                        </svg>
+                    </button>
+                    <button class="tafseer-close" id="resultsPanelClose">✕</button>
+                </div>
+            </div>
+            <div class="tafseer-content" id="resultsPanelContent">
+                <!-- Filled dynamically by recite-controller.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data-loader.js?v=1.0"></script>
+    <script src="js/renderer.js?v=1.0"></script>
+    <script src="js/audio-recorder.js?v=1.0"></script>
+    <script src="js/api-client.js?v=2.0"></script>
+    <script src="js/search-controller.js?v=1.0"></script>
+    <script src="js/recite-controller.js?v=7.0"></script>
+    <script src="js/app.js?v=3.0"></script>
+</body>
+
+</html>

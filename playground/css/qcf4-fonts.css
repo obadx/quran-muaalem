@@ -1,0 +1,129 @@
+/* Complete QCF4 Font Declarations */
+
+/* QCF4 Basmalah Font (Font 0) */
+@font-face {
+    font-family: 'QCF4_QBSML';
+    src: url(../assets/fonts/qcf4/QCF4_QBSML.woff2);
+    font-display: block;
+}
+
+/* QCF4 Hafs Fonts 1-20 */
+@font-face {
+    font-family: 'QCF4_Hafs_01';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_01_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_02';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_02_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_03';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_03_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_04';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_04_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_05';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_05_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_06';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_06_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_07';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_07_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_08';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_08_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_09';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_09_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_10';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_10_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_11';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_11_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_12';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_12_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_13';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_13_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_14';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_14_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_15';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_15_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_16';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_16_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_17';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_17_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_18';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_18_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_19';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_19_W.woff2);
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'QCF4_Hafs_20';
+    src: url(../assets/fonts/qcf4/QCF4_Hafs_20_W.woff2);
+    font-display: block;
+}
