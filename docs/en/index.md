@@ -2,7 +2,7 @@
 layout: home
 hero:
   name: Quran Muaalem
-  text: Correct Holy Quran recitations by analyzing phonemes, diacritization, articulatory attributes, and Tajweed rules using open‑source AI
+  text: Correct Holy Quran recitations by analyzing phonemes, diacritization, articulatory attributes, and Tajweed rules using source-available AI
   tagline: Model + tools + transcript pipeline in one repo
   actions:
     - theme: brand

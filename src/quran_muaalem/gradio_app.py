@@ -257,8 +257,19 @@ def reset_settings():
         ]
 
 
+AI_ADVISORY_NOTICE = """
+> **إشعار الذكاء الاصطناعي / AI Advisory Notice**
+>
+> **العربية:** هذا المعلّم القرآني نموذج ذكاء اصطناعي قد يخطئ؛ فهو للإعانة فقط ولا يُعتمد عليه، وليس بديلاً عن معلّمٍ مُتقِنٍ مُجاز؛ لأنّ القرآن لا يُؤخذ إلا بالمشافهة.
+>
+> **English:** This Quranic Teacher is an artificial-intelligence model that may make mistakes. It is intended for assistance only and must not be relied upon. It is not a replacement for a proficient, authorized teacher, because the Quran is only received through oral transmission (mushafahah).
+"""
+
+
 # Create the Gradio app
 with gr.Blocks(title="المعلم القرآني") as app:
+    gr.Markdown(AI_ADVISORY_NOTICE)
+
     # Store current moshaf settings in session state
     current_moshaf_state = gr.State(default_moshaf)
 
@@ -389,6 +400,16 @@ with gr.Blocks(title="المعلم القرآني") as app:
         # Reset to default event
         reset_btn.click(
             reset_settings, inputs=[], outputs=settings_components + [status_message]
+        )
+
+    with gr.Tab("حول - About"):
+        gr.Markdown("# حول المعلم القرآني - About Quran Muaalem")
+        gr.Markdown(AI_ADVISORY_NOTICE)
+        gr.Markdown(
+            "الترخيص: [Quran Muaalem License (QML) v1.0]"
+            "(https://github.com/obadx/quran-muaalem/blob/main/LICENSE)\n\n"
+            "License: [Quran Muaalem License (QML) v1.0]"
+            "(https://github.com/obadx/quran-muaalem/blob/main/LICENSE)"
         )
 
 

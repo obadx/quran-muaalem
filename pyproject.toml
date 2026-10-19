@@ -2,11 +2,12 @@
 # pypip tutoral: https://packaging.python.org/en/latest/tutorials/packaging-projects/
 # Video Tutorial: https://www.youtube.com/watch?v=v6tALyc4C10
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-license = "MIT"
+license = "LicenseRef-QML-1.0"
+license-files = ["LICENSE", "NOTICE"]
 name = "quran-muaalem"
 version = "0.2.2"
 authors = [

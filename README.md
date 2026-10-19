@@ -16,15 +16,15 @@
 [![Hugging Face Dataset][hf-dataset-badge]][hf-dataset-url]
 [![Google Colab][colab-badge]][colab-url]
 [![arXiv][arxiv-badge]][arxiv-url]
-[![MIT License][mit-badge]][mit-url]
+[![QML License][qml-badge]][qml-url]
 [![Discord][discord-badge]][discord-url]
 
 </div>
 
 [pypi-badge]: https://img.shields.io/pypi/v/quran-muaalem.svg
 [pypi-url]: https://pypi.org/project/quran-muaalem/
-[mit-badge]: https://img.shields.io/github/license/obadx/quran-muaalem.svg
-[mit-url]: https://github.com/obadx/quran-muaalem/blob/main/LICENSE
+[qml-badge]: https://img.shields.io/badge/License-QML%201.0-blue.svg
+[qml-url]: https://github.com/obadx/quran-muaalem/blob/main/LICENSE
 [python-badge]: https://img.shields.io/pypi/pyversions/quran-muaalem.svg
 [python-url]: https://pypi.org/project/quran-muaalem/
 [colab-badge]: https://img.shields.io/badge/Google%20Colab-Open%20in%20Colab-F9AB00?logo=google-colab&logoColor=white
@@ -50,7 +50,34 @@
 [![ALT_TEXT](https://img.youtube.com/vi/CsFoznO08-Q/0.jpg)](https://www.youtube.com/watch?v=CsFoznO08-Q)
 
 
-## الممزيات
+## جدول المحتويات
+
+- [إشعار الذكاء الاصطناعي](#إشعار-الذكاء-الاصطناعي)
+- [المميزات](#المميزات)
+- [المعمارية](#المعمارية)
+- [الخطوات المختصرة للتطوير](#الخطوات-المختصرة-للتطوير)
+- [استخدام النموذج](#استخدام-النموذج)
+- [Basic Usage Example](#basic-usage-example)
+- [خوادم API](#خوادم-api)
+- [إعدادات المحرك (EngineSettings)](#إعدادات-المحرك-enginesettings)
+- [إعدادات التطبيق (AppSettings)](#إعدادات-التطبيق-appsettings)
+- [نقاط النهاية](#نقاط-النهاية)
+- [خصائص المصحف (MoshafAttributes)](#خصائص-المصحف-moshafattributes)
+- [قواعد التجويد (Tajweed Rules)](#قواعد-التجويد-tajweed-rules)
+- [مثال: البحث في القرآن (Search Endpoint)](#مثال-البحث-في-القرآن-search-endpoint)
+- [مثال كامل: تصحيح التلاوة](#مثال-كامل-تصحيح-التلاوة)
+- [وثائق OpenAPI التفاعلية](#وثائق-openapi-التفاعلية)
+- [الترخيص](#الترخيص)
+
+## إشعار الذكاء الاصطناعي
+
+> **العربية:** هذا المعلّم القرآني نموذج ذكاء اصطناعي قد يخطئ؛ فهو للإعانة فقط ولا يُعتمد عليه، وليس بديلاً عن معلّمٍ مُتقِنٍ مُجاز؛ لأنّ القرآن لا يُؤخذ إلا بالمشافهة.
+>
+> **English:** This Quranic Teacher is an artificial-intelligence model that may make mistakes. It is intended for assistance only and must not be relied upon. It is not a replacement for a proficient, authorized teacher, because the Quran is only received through oral transmission (mushafahah).
+
+النص العربي هو المرجع في حال اختلاف النسخ.
+
+## المميزات
 
 * مدرب على الرسم الصوتي للقرآن الكريم: [quran-transcript](https://github.com/obadx/quran-transcript) القادر على كشف أخطاء الحروف والتجويد وصفات الحروف
 * نموذج معقول الحجم 660 MP 
@@ -73,7 +100,7 @@
 * تدريب النموذج على معمارية [Wav2Vec2BERT](https://huggingface.co/docs/transformers/model_doc/wav2vec2-bert)
 
 
-## استخدام النوذج
+## استخدام النموذج
 
 
 ### استخدام النموذج عن طريق واجهة gradio
@@ -808,4 +835,18 @@ curl -X 'POST' \
 - أمثلة تفاعلية لكل نقطة نهاية
 - مخططات الاستجابة الكاملة
 - إمكانية التنفيذ المباشر من المتصفح
-```
+
+---
+
+## الترخيص
+
+هذا المشروع مرخّص بموجب **Quran Muaalem License (QML)، الإصدار 1.0** — رخصة Apache 2.0 مع شروط إضافية. راجع [LICENSE](https://github.com/obadx/quran-muaalem/blob/main/LICENSE) للنص الكامل. معرّف SPDX: `LicenseRef-QML-1.0`.
+
+### الشروط الإضافية
+
+1. **استخدام الذكاء الاصطناعي والإفصاح عنه.** يستخدم العمل نموذج ذكاء اصطناعي قد يخطئ، وهو للإعانة فقط ولا يجوز الاعتماد عليه أو تقديمه بديلاً عن معلّم متقن ومجاز. ويجب عرض إشعار الذكاء الاصطناعي قبل الاستخدام الأول وإتاحته دائمًا.
+2. **الالتزام بأحكام الشريعة الإسلامية.** يجب أن يلتزم كل استخدام وتعديل وتوزيع ونشر بأحكام الشريعة الإسلامية، وأي استخدام لا يلتزم بذلك غير مرخّص.
+3. **حظر الإعلانات.** لا يجوز أن يتضمن العمل أو أي منتج مشمول إعلانات أو شيفرة تقديم إعلانات أو تتبّعًا إعلانيًا أو بيع/مشاركة بيانات المستخدمين لأغراض إعلانية. ويبقى التحليلات العامة وتقارير الأعطال مسموحًا بها.
+4. **الاستخدام التجاري والوصول المجاني.** يُسمح بالاستخدام التجاري. وإذا فرضت أي رسوم على الوصول إلى العمل أو أي منتج مشمول، فيجب أيضًا توفير مسار واضح ومجاني للوظائف الأساسية: تلقائيًا للمستخدمين في الاقتصادات منخفضة الدخل والشريحة الدنيا من الدخل المتوسط، وعبر مسار بسيط داخل التطبيق للأفراد في أي مكان ممن لا يستطيعون تحمّل الرسوم. ويجب أن يكون المسار المجاني ظاهرًا قبل طلب أي دفع.
+
+الإصدارات المنشورة قبل QML 1.0 تبقى متاحة بموجب رخصة MIT لمن حصل عليها (البند 3.4).

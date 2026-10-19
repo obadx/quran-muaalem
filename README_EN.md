@@ -17,15 +17,15 @@
 [![Hugging Face Dataset][hf-dataset-badge]][hf-dataset-url]
 [![Google Colab][colab-badge]][colab-url]
 [![arXiv][arxiv-badge]][arxiv-url]
-[![MIT License][mit-badge]][mit-url]
+[![QML License][qml-badge]][qml-url]
 [![Discord][discord-badge]][discord-url]
 
 </div>
 
 [pypi-badge]: https://img.shields.io/pypi/v/quran-muaalem.svg
 [pypi-url]: https://pypi.org/project/quran-muaalem/
-[mit-badge]: https://img.shields.io/github/license/obadx/quran-muaalem.svg
-[mit-url]: https://github.com/obadx/quran-muaalem/blob/main/LICENSE
+[qml-badge]: https://img.shields.io/badge/License-QML%201.0-blue.svg
+[qml-url]: https://github.com/obadx/quran-muaalem/blob/main/LICENSE
 [python-badge]: https://img.shields.io/pypi/pyversions/quran-muaalem.svg
 [python-url]: https://pypi.org/project/quran-muaalem/
 [colab-badge]: https://img.shields.io/badge/Google%20Colab-Open%20in%20Colab-F9AB00?logo=google-colab&logoColor=white
@@ -50,6 +50,33 @@
 
 [![ALT_TEXT](https://img.youtube.com/vi/CsFoznO08-Q/0.jpg)](https://www.youtube.com/watch?v=CsFoznO08-Q)
 
+
+## Table of Contents
+
+- [AI Advisory Notice](#ai-advisory-notice)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Development Steps](#development-steps)
+- [Using the Model](#using-the-model)
+- [Basic Usage Example](#basic-usage-example)
+- [API Servers](#api-servers)
+- [Engine Settings](#engine-settings)
+- [App Settings](#app-settings)
+- [Endpoints](#endpoints)
+- [Moshaf Attributes](#moshaf-attributes)
+- [Tajweed Rules](#tajweed-rules)
+- [Example: Quran Search](#example-quran-search)
+- [Complete Example: Recitation Correction](#complete-example-recitation-correction)
+- [Interactive OpenAPI Documentation](#interactive-openapi-documentation)
+- [License](#license)
+
+## AI Advisory Notice
+
+> **English:** This Quranic Teacher is an artificial-intelligence model that may make mistakes. It is intended for assistance only and must not be relied upon. It is not a replacement for a proficient, authorized teacher, because the Quran is only received through oral transmission (mushafahah).
+>
+> **العربية:** هذا المعلّم القرآني نموذج ذكاء اصطناعي قد يخطئ؛ فهو للإعانة فقط ولا يُعتمد عليه، وليس بديلاً عن معلّمٍ مُتقِنٍ مُجاز؛ لأنّ القرآن لا يُؤخذ إلا بالمشافهة.
+
+The Arabic text controls in case of any discrepancy.
 
 ## Features
 
@@ -809,3 +836,18 @@ This documentation includes:
 - Interactive examples for each endpoint
 - Complete response schemas
 - Direct execution capability from the browser
+
+---
+
+## License
+
+This project is licensed under the **Quran Muaalem License (QML), Version 1.0** — the Apache License 2.0 with additional conditions. See [LICENSE](https://github.com/obadx/quran-muaalem/blob/main/LICENSE) for the full text. SPDX identifier: `LicenseRef-QML-1.0`.
+
+### Additional Conditions
+
+1. **AI usage and disclosure.** The Work uses an AI model that may make mistakes. It is for assistance only and must not be relied upon or presented as a substitute for a proficient, authorized teacher. The AI advisory notice must be shown before first use and remain permanently accessible.
+2. **Compliance with Islamic Sharia.** All use, modification, distribution, and deployment must adhere to the rulings of Islamic Sharia. Any use that does not comply is unlicensed.
+3. **No advertisements.** The Work and any covered product must never include advertisements, ad-serving code, advertising tracking, or the sale or sharing of user data for advertising. General analytics and crash reporting remain permitted.
+4. **Commercial use and free access.** Commercial use is permitted. If you charge any fee for access to the Work or a covered product, you must also provide a clear, no-cost path to the essential functionality: automatically for users in World Bank low-income and lower-middle-income economies, and through a simple in-app path for individuals anywhere who cannot afford the fee. The free path must be visible before any payment is requested.
+
+Releases published before QML 1.0 remain available under the MIT License to those who received them (Section 3.4).
