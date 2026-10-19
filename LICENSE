@@ -1,9 +1,14 @@
-                     QURAN MUAAALEM LICENSE (QML)
+                     QURAN MUAALEM LICENSE (QML)
                           Version 1.0
 
-          Apache License 2.0 with Quran Muaalem Additional Conditions
-
    Copyright (c) 2025 obadx and contributors
+
+   This License is the Apache License, Version 2.0 (the "Base License"),
+   modified by the Additional Conditions in Section 2 of this file. The
+   complete text of the Base License is reproduced in Appendix A and
+   forms part of this single License. Where an Additional Condition
+   conflicts with the Base License, the Additional Condition prevails.
+   Sections 7, 8, and 9 of the Base License apply unchanged.
 
 --------------------------------------------------------------------------
 
@@ -11,65 +16,162 @@ PREAMBLE
 
 The Quran is received through oral transmission (mushafahah) at the hands
 of proficient, authorized teachers. Software may assist a learner, but it
-must never be presented as a substitute for Expert Quran Teacher.
+must never be presented as a substitute for a proficient, authorized Quran
+teacher.
 
-This License therefore uses the permissive Apache License, Version 2.0 as
-its base, and adds the Additional Conditions set out in Section 2: a
+This License therefore takes the permissive Apache License, Version 2.0
+as its base, and adds the Additional Conditions set out in Section 2: a
 mandatory AI advisory notice, adherence to the rulings of Islamic Sharia,
 an absolute prohibition on advertisements, and a guaranteed free-access
 path for those who cannot pay.
 
-SECTION 1 - BASE LICENSE
+This Preamble is for interpretation only. The binding obligations are in
+the numbered Sections.
 
-1.1  "This License" means the Apache License, Version 2.0, January 2004
-     (the "Base License"), as modified by the Additional Conditions in
-     Section 2. The complete, unmodified official text of the Base License
-     is attached in Appendix A and is incorporated by reference.
+--------------------------------------------------------------------------
+
+SECTION 1 - BASE LICENSE AND DEFINITIONS
+
+1.1  "Base License" means the Apache License, Version 2.0, January 2004,
+     whose complete text is reproduced in Appendix A and incorporated in
+     this License. Within Appendix A, "License" and "this License" have
+     the meanings given by the Base License itself; elsewhere in this
+     file, "this License" means the Base License as modified by the
+     Additional Conditions in Section 2.
 
 1.2  Except as expressly modified by the Additional Conditions, all
-     definitions, grants, conditions, disclaimers, and limitations of the
-     Base License apply unchanged.
+     definitions, grants, conditions, disclaimers, and limitations of
+     the Base License apply unchanged.
 
-1.3  Capitalized terms not defined here have the meanings given in the
-     Base License.
+1.3  Capitalized terms not defined in this License have the meanings
+     given in the Base License.
+
+1.4  Additional definitions used in this License:
+
+     "Model" means any trained machine-learning model, including its
+     weights, parameters, configuration, and tokenizer or processor
+     files, that is distributed by the Licensor as part of the Work.
+
+     "Model Derivative" means any model that is trained, fine-tuned,
+     distilled, pruned, quantized, merged, converted, or otherwise
+     derived from the Model or from another Model Derivative. For the
+     purposes of this License, a Model Derivative is a Derivative Work.
+
+     "Outputs" means the results that the Work or a Model Derivative
+     produces when run. Outputs are not restricted by this License, but
+     Sections 2.1 and 2.2 continue to govern how You present them to
+     End Users.
+
+     "End User" means a natural person who uses the Work, a Derivative
+     Work, or a Covered Product through an Interface.
+
+     "Interface" means any screen, web page, command line, voice or
+     other means through which an End User interacts with the Work, a
+     Derivative Work, or a Covered Product.
+
+     "Interface Provider" means the person or entity that presents an
+     Interface to End Users, whether or not it is the same person or
+     entity that distributes the Work.
+
+     "Hosted Service" means any offering of the Work, a Derivative Work,
+     or a Covered Product to others over a network or as a service,
+     without distributing copies of it.
+
+     "Covered Product" means any application, website, or service, taken
+     as a whole, that includes, runs, or is built upon the Work or a
+     Derivative Work, including as a Hosted Service. A separate product
+     that does not include or run the Work or a Derivative Work, and only
+     sends or receives data through a public interface, is not a Covered
+     Product by that fact alone.
+
+     "Advertisement" means any content presented to End Users in return
+     for payment or other consideration from a third party, or to promote
+     the products, services, or interests of a third party, in any form
+     (display, video, audio, in-stream, sponsored or promoted content,
+     affiliate or referral links, or "rewarded" advertising).
+
+     "Essential Functionality" means the features of the Work or Covered
+     Product that analyze, correct, or search recitation, at the same
+     Model quality offered to paying users. Reasonable fair-use limits
+     (such as rate limits, queue priority, absence of service-level
+     guarantees or support, and daily or monthly usage caps) are
+     permitted, provided they leave the free path usable for regular
+     personal study.
+
+--------------------------------------------------------------------------
 
 SECTION 2 - ADDITIONAL CONDITIONS
 
-The Licensor provides these Additional Conditions pursuant to Section 4 of
-the Base License, which permits a licensor to provide additional license
-terms for modifications and Derivative Works as a whole. They bind every
-use, reproduction, modification, distribution, and making available
-(including offering the Work or any Derivative Work as a hosted or network
-service) of the Work and of Derivative Works, by You and by anyone
-downstream from You.
+The Licensor, as copyright holder, grants the rights in this License
+subject to the Additional Conditions below, imposed pursuant to Section 4
+of the Base License. They apply to every use, reproduction, modification,
+distribution, and making available (including offering the Work or any
+Derivative Work as a Hosted Service) of the Work and of Derivative Works,
+by You and by anyone who receives the Work or a Derivative Work from You.
 
 2.1  AI ADVISORY NOTICE
 
-     You must cause each user in a clear,
-     conspicuous, and persistent manner (reachable at any time afterwards),
-     to be shown a notice in the user's language substantially equivalent
-     to:
+     (a) Duty. You must ensure that every End User of every Covered
+         Product is shown the notice in paragraph (b), clearly and
+         conspicuously:
+
+           (i)  before first use; and
+          (ii)  at all times afterwards, reachable from the main menu or
+                an About or Help screen.
+
+     (b) Text and languages. The notice must be shown in each language
+         in which the Interface is offered, and always also in Arabic.
+         It must be substantially equivalent to the text below and must
+         keep all four of its elements: (1) it is an AI model that may
+         make mistakes; (2) it is for assistance only and must not be
+         relied upon; (3) it is not a replacement for a proficient,
+         authorized teacher; and (4) the Quran is received only through
+         oral transmission (mushafahah). If versions differ, the Arabic
+         text controls. Where the product is not a teacher (for example,
+         a search-only tool), "This tool" may replace "This Quranic
+         Teacher". Using the official translations that the Licensor
+         publishes in the project repository, word for word, satisfies
+         the language requirement for those languages.
 
        EN: "This Quranic Teacher is an artificial-intelligence model that
             may make mistakes. It is intended for assistance only and must
-            not be relied upon. It is not a replacement for a proficient
-            teacher, because the Quran is only received through oral
-            transmission (mushafahah)."
+            not be relied upon. It is not a replacement for a proficient,
+            authorized teacher, because the Quran is only received
+            through oral transmission (mushafahah)."
 
        AR: "هذا المعلّم القرآني نموذج ذكاء اصطناعي قد يخطئ؛ فهو للإعانة
-            فقط ولا يُعتمد عليه، وليس بديلاً عن معلّمٍ مُجاز؛ لأنّ القرآن
-            لا يُؤخذ إلا بالمشافهة."
+            فقط ولا يُعتمد عليه، وليس بديلاً عن معلّمٍ مُتقِنٍ مُجاز؛ لأنّ
+            القرآن لا يُؤخذ إلا بالمشافهة."
 
-     Removing, obscuring, bypassing, or making this notice materially less
-     prominent is a material breach of this License. Source distributions
-     must carry an equivalent notice in the NOTICE file, README, or
-     principal entry points of the program.
+     (c) Who must comply. The duty in paragraph (a) falls on the
+         Interface Provider. If You distribute the Work or a Derivative
+         Work as a library, API, or other component without presenting
+         an Interface to End Users, You must include this requirement
+         in Your documentation and require those who build Interfaces
+         on it to comply.
+
+     (d) Prominence. The notice must be at least as prominent as the
+         product's other legal or "About" information and no smaller
+         than ordinary body text. Removing, obscuring, bypassing, or
+         making the notice materially less prominent is a material
+         breach of this License.
+
+     (e) Source distributions. Source distributions must carry an
+         equivalent notice in the NOTICE file, the README, and a
+         prominent place in the program.
+
+     (f) No substitution claims. You must not present the Work, a
+         Derivative Work, or their Outputs as a substitute for a
+         proficient, authorized teacher.
 
 2.2  ISLAMIC SHARIA COMPLIANCE
 
-     All use, modification, distribution, and deployment of the Work and
-     Derivative Works must adhere to the rulings of Islamic Sharia, As
-     source of law ................. [needs work]
+     Islamic Sharia is the source of law for the Work and its Derivative
+     Works. Every use, modification, distribution, and deployment must
+     adhere to the rulings of Islamic Sharia. Any use not adhering to
+     those rulings is unlicensed and a material breach of this License.
+     This Section is incorporated as a contractual condition within
+     applicable law.
 
 2.3  COMMERCIAL USE CONDITIONS
 
@@ -77,87 +179,340 @@ downstream from You.
      Work or Derivative Works are permitted, subject to paragraphs (a)
      and (b):
 
-     (a) NO ADVERTISEMENTS. The Work, Derivative Works, and any product,
-         service, or platform built upon them must never include
-         advertisements in any form, including display, video, audio, and
-         in-stream advertisements, sponsored or promoted content,
-         affiliate or referral monetization, "rewarded" advertisements,
-         and any advertisement-serving, advertisement-measurement, or
-         advertising-profiling SDKs or code. This paragraph does not
-         prohibit informing users of Your own products, accepting
-         donations, or charging the fees contemplated by paragraph (b).
+     (a) NO ADVERTISEMENTS. This paragraph applies to everyone, whether
+         or not the use is commercial. The Work, Derivative Works, and
+         every Covered Product must never include Advertisements, and
+         must never include or run advertisement-serving code,
+         advertisement attribution or conversion-measurement code for
+         advertising campaigns, cross-app or cross-site tracking for
+         advertising purposes, or code that sells or shares End User
+         data for advertising purposes. General analytics and crash
+         reporting are not prohibited, provided they are not used for
+         any of these purposes. This paragraph does not prohibit:
 
-     (b) FREE ACCESS FOR THOSE WHO CANNOT PAY. If You charge any fee for
-         access to the Work or a Derivative Work (including subscriptions
+           (i)   informing End Users of Your own products and services;
+          (ii)   accepting donations, and acknowledging donors or
+                 sponsors by name without promotional content;
+         (iii)   charging the fees contemplated by paragraph (b);
+          (iv)   offering, for a fee or commission, human teaching
+                 services that You or the teacher provide, provided there
+                 is no paid placement or paid ranking; or
+           (v)   Advertisements shown by a third-party hosting or
+                 distribution platform (such as a download site or
+                 package mirror) outside the Interface and not under
+                 Your control.
+
+     (b) FREE ACCESS FOR THOSE WHO CANNOT PAY. If You charge any fee to
+         End Users for access to the Work, a Derivative Work, or a
+         Covered Product (including subscriptions, one-time purchases,
          or paywalls), You must also provide a clear, easy-to-access,
-         no-cost method of using the same essential functionality:
+         no-cost method of using the Essential Functionality:
 
-           (i) automatically, with no request or verification, for users
-               located in countries classified by the World Bank as
-               "Low income" or "Lower-middle income" economies; and
+           (i) automatically, with no request by the End User and no
+               verification of the End User's circumstances, for End
+               Users located in economies classified by the World Bank
+               as "Low income" or "Lower-middle income" in the
+               classification in effect on the date of access. You may
+               determine location by commercially reasonable methods
+               (such as IP address, app-store region, or device locale)
+               and may rely on them in good faith. If location cannot
+               be determined, path (ii) must be offered; and
 
-          (ii) for individuals anywhere who cannot afford the fee, through
-               a simple path reachable inside the application interface
-               (for example, self-declaration or a community code),
-               without intrusive verification, means-testing, or the need
-               to contact support.
+          (ii) for individuals anywhere who cannot afford the fee,
+               through a simple path reachable inside the application
+               interface (for example, self-declaration or a community
+               code, meaning a code issued by You, a community, or an
+               institution that unlocks free access), without intrusive
+               verification, means-testing, or the need to contact
+               support.
 
-         The free path must be visible to the user before any payment is
-         requested.
+         The free path must be visible to the End User before any
+         payment is requested. An End User is not "charged" if a school,
+         employer, or other institution pays on their behalf and they
+         pay nothing themselves.
 
 2.4  NO REMOVAL OF THE ADDITIONAL CONDITIONS
 
-     You may add Your own license terms for Your modifications or
-     Derivative Works, as permitted by Section 4 of the Base License,
-     provided the resulting terms preserve Additional Conditions 2.1,
-     2.2, and 2.3 in full force, neither removing nor weakening them.
-     Every copy or distribution of the Work or Derivative Works must
-     reproduce this License, including Appendix A.
+     You may add Your own license terms for Your modifications, or for
+     Derivative Works as a whole, provided the resulting terms preserve
+     the Additional Conditions in Section 2 in full force. Every
+     distribution of the Work or Derivative Works must reproduce this
+     License in full, including Appendix A.
 
 2.5  TERMINATION
 
-     If You breach this License and do not cure the breach within thirty
-     (30) days after becoming aware of it, all licenses granted to You
-     under this License terminate automatically and immediately.
+     Notwithstanding the word "irrevocable" in Sections 2 and 3 of the
+     Base License, if You breach this License and do not cure the
+     breach within thirty (30) days after the earlier of (i) written
+     notice from the Licensor or any Contributor, or (ii) the time You
+     become aware of it, all licenses granted to You under this License
+     terminate automatically. If You cure the breach within that
+     period, Your licenses remain in force. Each person who receives
+     the Work or a Derivative Work from You receives a license directly
+     from the Licensor and Contributors on the terms of this License;
+     termination of Your licenses does not terminate the licenses of
+     recipients who comply with this License.
 
 2.6  SEVERABILITY
 
-     If any provision of this License is held invalid or unenforceable, it
-     shall be reformed to the minimum extent necessary to make it
-     enforceable, and the remaining provisions shall remain in full force.
+     If any provision of this License is held invalid or unenforceable,
+     it shall be reformed to the minimum extent necessary to make it
+     enforceable, and the remaining provisions shall remain in full
+     force.
 
-SECTION 3 - RELATIONSHIP TO THE BASE LICENSE
+2.7  ACCEPTANCE
 
-3.1  The Additional Conditions do not modify the Disclaimer of Warranty
-     (Base License, Section 7) or the Limitation of Liability (Base
-     License, Section 8), which remain in full force.
+     By using, reproducing, modifying, distributing, or making
+     available the Work, a Model, or a Derivative Work (including by
+     downloading or running a Model), You accept this License. The
+     Licensor may require an explicit acceptance step, such as a gated
+     download, for the Model.
 
-3.2  In the event of conflict between an Additional Condition and the Base
-     License, the Additional Condition prevails with respect to its
-     subject matter.
+--------------------------------------------------------------------------
 
-3.3  Nothing in this License grants rights to use the Licensor's trade
-     names, trademarks, or service marks (Base License, Section 6
-     applies).
+SECTION 3 - GENERAL TERMS
 
-APPENDIX A - APACHE LICENSE, VERSION 2.0
+3.1  Compliance with law. Nothing in this License requires You to
+     violate applicable law, including sanctions and export-control
+     laws. If a legal restriction prevents You from meeting a
+     requirement of Section 2.3(b) in a particular country, You must
+     still meet it everywhere else.
 
-     [Insert here, unchanged, the complete official text of the Apache
-     License, Version 2.0 (January 2004), from:
-     https://www.apache.org/licenses/LICENSE-2.0.txt]
+3.2  Governing law. This License is governed by the laws of
+     [JURISDICTION], and the courts of [VENUE] have jurisdiction,
+     without prejudice to Section 2.2 as a standard of conduct for use
+     of the Work.
+
+3.3  Languages. The English text of this License controls. Any
+     translation is provided for convenience only. (The Arabic text of
+     the notice in Section 2.1 controls as stated in Section 2.1(b).)
+
+3.4  Versions. The Licensor may publish revised versions of this
+     License. Work released under Version 1.0 remains under Version 1.0
+     unless the Licensor states otherwise in a later release, and the
+     Licensor may license new releases of the Work under a later
+     version.
+
+3.5  Earlier releases. Releases of the Work published before the first
+     release under this License were published under the MIT License
+     and remain available under that license to those who received
+     them.
+
+--------------------------------------------------------------------------
+
+APPENDIX A - THE BASE LICENSE: APACHE LICENSE, VERSION 2.0
+
+The following is the official text of the Apache License, Version 2.0,
+January 2004, reproduced without modification, except that the Apache
+License's own informational appendix ("How to apply the Apache License
+to your work") is replaced by Appendix B of this License.
+
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other
+      modifications represent, as a whole, an original work of
+      authorship. For the purposes of this License, Derivative Works shall
+      not include works that remain separable from, or merely link (or
+      bind by name) to the interfaces of, the Work and Derivative Works
+      thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright
+      owner or by an individual or Legal Entity authorized to submit on
+      behalf of the copyright owner. For the purposes of this definition,
+      "submitted" means any form of electronic, verbal, or written
+      communication sent to the Licensor or its representatives, including
+      but not limited to communication on electronic mailing lists, source
+      code control systems, and issue tracking systems that are managed by,
+      or on behalf of, the Licensor for the purpose of discussing and
+      improving the Work, but excluding communication that is conspicuously
+      marked or otherwise designated in writing by the copyright owner as
+      "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute
+          must include a readable copy of the attribution notices
+          contained within such NOTICE file, excluding those notices
+          that do not pertain to any part of the Derivative Works, in
+          at least one of the following places: within a NOTICE text
+          file distributed as part of the Derivative Works; within the
+          Source form or documentation, if provided along with the
+          Derivative Works; or, within a display generated by the
+          Derivative Works, if and wherever such third-party notices
+          normally appear. The contents of the NOTICE file are for
+          informational purposes only and do not modify the License.
+          You may add Your own attribution notices within Derivative
+          Works that You distribute, alongside or as an addendum to the
+          NOTICE text from the Work, provided that such additional
+          attribution notices cannot be construed as modifying the
+          License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing
+      the origin of the Work and reproducing the content of the NOTICE
+      file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this
+      License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+--------------------------------------------------------------------------
 
 APPENDIX B - HOW TO APPLY THIS LICENSE TO YOUR WORK
 
-     Attach the following boilerplate notice to each file, replacing the
-     fields in brackets:
+For source files, attach the following notice, replacing the fields in
+brackets:
 
-        Copyright [yyyy] [name of copyright owner]
+   Copyright [yyyy] [name of copyright owner]
 
-        Licensed under the Quranic Teacher License (QTL), Version 1.0
-        (Apache License 2.0 with Quranic Teacher Additional Conditions).
-        You may obtain a copy at the repository of this project. Unless
-        required by applicable law or agreed to in writing, software
-        distributed under this License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-        implied. See the License for the specific language governing
-        permissions and limitations.
+   Licensed under the Quran Muaalem License (QML), Version 1.0 (the
+   "License"); you may not use this file except in compliance with the
+   License. You may obtain a copy of the License at
+
+       [URL OF THE LICENSE IN THE PROJECT REPOSITORY]
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+   implied. See the License for the specific language governing
+   permissions and limitations under the License.
+
+For model weights and other files that cannot carry a header, place
+this LICENSE file in the root of the model repository, together with a
+NOTICE file (containing the Section 2.1 notice in English and Arabic),
+and state the license in the model card metadata and text.
+
+SPDX identifier for this License: LicenseRef-QML-1.0
