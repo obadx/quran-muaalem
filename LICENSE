@@ -1,7 +1,7 @@
                      QURAN MUAALEM LICENSE (QML)
                           Version 1.0
 
-   Copyright (c) 2025 obadx and contributors
+   Copyright (c) 2025 obadx
 
    This License is the Apache License, Version 2.0 (the "Base License"),
    modified by the Additional Conditions in Section 2 of this file. The
@@ -244,12 +244,12 @@ by You and by anyone who receives the Work or a Derivative Work from You.
      Notwithstanding the word "irrevocable" in Sections 2 and 3 of the
      Base License, if You breach this License and do not cure the
      breach within thirty (30) days after the earlier of (i) written
-     notice from the Licensor or any Contributor, or (ii) the time You
+     notice from the Licensor, or (ii) the time You
      become aware of it, all licenses granted to You under this License
      terminate automatically. If You cure the breach within that
      period, Your licenses remain in force. Each person who receives
      the Work or a Derivative Work from You receives a license directly
-     from the Licensor and Contributors on the terms of this License;
+     from the Licensor on the terms of this License;
      termination of Your licenses does not terminate the licenses of
      recipients who comply with this License.
 
@@ -287,11 +287,6 @@ SECTION 3 - GENERAL TERMS
      unless the Licensor states otherwise in a later release, and the
      Licensor may license new releases of the Work under a later
      version.
-
-3.4  Earlier releases. Releases of the Work published before the first
-     release under this License were published under the MIT License
-     and remain available under that license to those who received
-     them.
 
 --------------------------------------------------------------------------
 
