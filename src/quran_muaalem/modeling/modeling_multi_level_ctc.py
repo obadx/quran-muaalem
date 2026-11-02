@@ -3,7 +3,6 @@ from typing import Optional, Union
 from transformers.models.wav2vec2_bert.modeling_wav2vec2_bert import (
     Wav2Vec2BertPreTrainedModel,
     Wav2Vec2BertModel,
-    _HIDDEN_STATES_START_POSITION,
 )
 from transformers.utils import auto_docstring
 from transformers.modeling_outputs import CausalLMOutput
@@ -11,6 +10,10 @@ import torch
 from torch import nn
 
 from .configuration_multi_level_ctc import Wav2Vec2BertForMultilevelCTCConfig
+
+# Private constant in transformers<5 (removed in 5.x): index where hidden states
+# start in the Wav2Vec2BertModel output tuple.
+_HIDDEN_STATES_START_POSITION = 2
 
 
 class Wav2Vec2BertForMultilevelCTC(Wav2Vec2BertPreTrainedModel):
