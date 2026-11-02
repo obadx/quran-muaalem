@@ -68,6 +68,7 @@
 - [Example: Quran Search](#example-quran-search)
 - [Complete Example: Recitation Correction](#complete-example-recitation-correction)
 - [Interactive OpenAPI Documentation](#interactive-openapi-documentation)
+- [Contact](#contact)
 - [License](#license)
 
 ## AI Advisory Notice
@@ -836,6 +837,14 @@ This documentation includes:
 - Interactive examples for each endpoint
 - Complete response schemas
 - Direct execution capability from the browser
+
+---
+
+## Contact
+
+For inquiries, suggestions, and support, contact us by email:
+
+[quran.muaalem@gmail.com](mailto:quran.muaalem@gmail.com)
 
 ---
 
