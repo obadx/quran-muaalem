@@ -17,6 +17,7 @@ description = "Quran Phonetic Script with addional quarnic utils"
 readme = "README.md"
 dependencies = [
     "diff-match-patch>=20241021",
+    "fuzzysearch>=0.8.0",
     "numpy>=2.2.6",
     "quran-transcript>=0.6.1",
     "rich>=14.1.0",

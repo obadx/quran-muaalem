@@ -1,4 +1,5 @@
 import asyncio
+from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 from typing import (
     Optional,
@@ -17,8 +18,11 @@ from quran_transcript import quran_phonetizer, explain_error
 from quran_transcript.phonetics.moshaf_attributes import MoshafAttributes
 from quran_transcript.phonetics.search import (
     PhoneticSearch,
+    PhonmesSearhResult,
     NoPhonemesSearchResult,
 )
+from fuzzysearch import find_near_matches
+import numpy as np
 
 from .settings import AppSettings
 from .types import (
@@ -163,14 +167,82 @@ async def call_engine_predict(audio_file: UploadFile) -> str:
         return data["phonemes"]
 
 
+# Ayat searched around a hint, in Quran order (so 1:7 -> 2:1 is covered): the
+# reciter may have gone back a little, or on past the hint. One breath can cover
+# several short ayat (112:2-4), so the window after the hint grows with the query.
+HINT_AYAT_BEFORE = 2
+HINT_AYAT_AFTER = 1
+HINT_MAX_AYAT_AFTER = 15
+HINT_QUERY_SPAN = 1.5  # reference after the hint >= this x query length
+
+
+@lru_cache(maxsize=1)
+def _aya_starts(ph_search: PhoneticSearch) -> tuple[np.ndarray, np.ndarray]:
+    """Row of each aya's first phoneme in the (Quran-ordered) index, and its key."""
+    key = ph_search.index[:, 0].astype(np.int64) * 1000 + ph_search.index[:, 1]
+    starts = np.flatnonzero(np.r_[True, key[1:] != key[:-1]])
+    return starts, key[starts]
+
+
+def search_near(
+    ph_search: PhoneticSearch,
+    phonemes: str,
+    error_ratio: float,
+    sura_idx: int,
+    aya_idx: int,
+) -> list[PhonmesSearhResult]:
+    """Fuzzy search limited to the ayat around a hint, closest match first.
+
+    Searching the whole Quran is slow for short or noisy queries (seconds) and
+    returns matches in Quran order, so a phrase that also appears earlier (e.g.
+    the basmala for 1:3) wins. The index is in Quran order, so the ayat around
+    the hint are one contiguous slice of the reference.
+    """
+    starts, keys = _aya_starts(ph_search)
+    i = int(np.searchsorted(keys, sura_idx * 1000 + aya_idx))
+    if i >= len(keys) or keys[i] != sura_idx * 1000 + aya_idx:
+        raise NoPhonemesSearchResult(f"There is no aya {sura_idx}:{aya_idx}")
+    norm_query = ph_search._normalize_query(phonemes)
+    if not norm_query:
+        raise NoPhonemesSearchResult("No speech recognised")
+    lo = int(starts[max(0, i - HINT_AYAT_BEFORE)])
+    j = i + HINT_AYAT_AFTER + 1
+    need = int(len(norm_query) * HINT_QUERY_SPAN)
+    while j < len(starts) and starts[j] - starts[i] < need and j - i <= HINT_MAX_AYAT_AFTER:
+        j += 1
+    hi = int(starts[j]) if j < len(starts) else len(ph_search.index)
+    max_edits = int(len(norm_query) * error_ratio)
+    outs = find_near_matches(norm_query, ph_search.ref_ph_norm[lo:hi], max_l_dist=max_edits)
+    if not outs:
+        raise NoPhonemesSearchResult("No match near the hinted aya")
+    return [
+        PhonmesSearhResult(
+            start=ph_search._ref_idx_to_span(lo + o.start, end=False),
+            end=ph_search._ref_idx_to_span(lo + o.end - 1, end=True),
+        )
+        for o in sorted(outs, key=lambda o: o.dist)
+    ]
+
+
 def run_phonetic_search(
-    phonemes: str, error_ratio: float
+    phonemes: str,
+    error_ratio: float,
+    sura_idx: int | None = None,
+    aya_idx: int | None = None,
 ) -> tuple[list[SearchResultResponse], str | None]:
     ph_search = get_phonetic_search()
     try:
-        results = ph_search.search(phonemes, error_ratio=error_ratio)
-    except NoPhonemesSearchResult:
+        if sura_idx is not None and aya_idx is not None:
+            results = search_near(ph_search, phonemes, error_ratio, sura_idx, aya_idx)
+        else:
+            results = ph_search.search(phonemes, error_ratio=error_ratio)
+    except NoPhonemesSearchResult as e:
+        if sura_idx is not None and aya_idx is not None:
+            return [], str(e)
         return [], "No results found. Try increasing error_ratio."
+    except ValueError:
+        # empty query: no speech recognised
+        return [], "No speech recognised."
 
     response_results = []
     for r in results:
@@ -380,6 +452,9 @@ This endpoint:
 - **phonetic_text**: Direct phonetic text input (alternative to audio)
 - **moshaf**: MoshafAttributes form fields defining recitation rules (see API docs for full list)
 - **error_ratio**: Maximum allowed error ratio for search (0.0-1.0)
+- **sura_idx**, **aya_idx**: Optional hint. Only the ayat around it are searched (2 before,
+  and after it at least 1 aya and enough to cover the audio), closest match first. Faster,
+  and repeated phrases elsewhere can't win.
 
 ## MoshafAttributes (Recitation Rules)
 
@@ -460,6 +535,14 @@ async def correct_recitation(
     ),
     moshaf: MoshafAttributes = Depends(correct_recitation_form_dependency()),
     error_ratio: Annotated[float, Form(ge=0.0, le=1)] = app_settings.error_ratio,
+    sura_idx: Annotated[
+        int | None,
+        Form(ge=1, le=114, description="Optional hint: sura being recited"),
+    ] = None,
+    aya_idx: Annotated[
+        int | None,
+        Form(ge=1, description="Optional hint: aya being recited"),
+    ] = None,
 ):
     if file:
         predicted_phonemes = await call_engine_predict(file)
@@ -477,6 +560,8 @@ async def correct_recitation(
         run_phonetic_search,
         predicted_phonemes,
         error_ratio,
+        sura_idx,
+        aya_idx,
     )
 
     if not search_results:
